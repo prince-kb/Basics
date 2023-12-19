@@ -1,0 +1,136 @@
+{
+    "status": "ok",
+    "totalResults": 10,
+    "articles": [
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Paul Sawers",
+    "title": "Butternut Box wolfs down $354M for subscription canine cuisine | TechCrunch",
+    "description": "Butternut Box, which prepares and ships healthy food and supplements for dogs, is raising £280 million ($354 million) in a round of funding.",
+    "url": "https://techcrunch.com/2023/09/04/dog-health-food-startup-butternut-box-wolfs-down-354m/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/09/ButternutBox-1-e1693833125572.jpg?resize=1200,674",
+    "publishedAt": "2023-09-04T14:04:28Z",
+    "content": "Butternut Box, a U.K.-based startup that prepares and ships healthy food and supplements for dogs, is raising £280 million ($354 million) in a round of funding from General Atlantic and L Catterton.\r… [+1630 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Ivan Mehta",
+    "title": "Cinemin is a fun camera app with animated film aesthetics without any AI | TechCrunch",
+    "description": "Tinrocket have released a new camera app called Cinemin to shoot animated photos and videos without the help of any AI filters.",
+    "url": "https://techcrunch.com/2023/09/04/cinemin-is-a-fun-camera-app-with-animated-film-aesthetics-without-any-ai/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/09/Cinemin.jpg?resize=1200,675",
+    "publishedAt": "2023-09-04T11:52:13Z",
+    "content": "Tinrocket, makers of popular apps such as Waterlogue and Olli, have released a new camera app called Cinemin to shoot animated photos and videos without the help of any AI filters.\r\nThe app, availabl… [+1711 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Manish Singh",
+    "title": "Indian fintechs amplify sound box pitches to woo merchants | TechCrunch",
+    "description": "Some of India's biggest fintech startups are making deeper inroads into soundboxes, unveiling new push to the pocket-sized devices whose chimes are fast",
+    "url": "https://techcrunch.com/2023/09/04/indian-fintechs-amplify-sound-box-pitches-to-woo-merchants/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2020/09/GettyImages-631364290.jpg?resize=1200,800",
+    "publishedAt": "2023-09-04T09:50:12Z",
+    "content": "Some of India’s biggest fintech startups are making deeper inroads into soundboxes, unveiling new push to the pocket-sized devices whose chimes are fast becoming the new ‘ka-ching’ for millions of In… [+2537 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Tage Kene-Okafor",
+    "title": "Nigerian embedded finance platform Anchor raises $2.4M to expand product offerings | TechCrunch",
+    "description": "Anchor, a Nigerian banking-as-a-service (BaaS) provider, has raised $2.4 million in seed investment led by Justin Kan’s Goat Capital.",
+    "url": "https://techcrunch.com/2023/09/04/nigerian-embedded-finance-platform-anchor-raises-2-6m-to-expand-product-offerings/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/09/93EB345C-1D1E-4CB3-9906-6937553B3286.jpeg?w=1008",
+    "publishedAt": "2023-09-04T08:03:05Z",
+    "content": "Anchor, a Nigerian banking-as-a-service (BaaS) provider, has raised $2.4 million in seed investment. Justin Kans Goat Capital led the financing round which also welcomed participation from FoundersX,… [+4947 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Ivan Mehta",
+    "title": "Qept is a simple iOS note-taking app that is all about texting yourself | TechCrunch",
+    "description": "Developer Willem de Beijer developed note note-taking app Qept for iOS keeping the \"DM-to-yourself\" phenomenon in mind.",
+    "url": "https://techcrunch.com/2023/09/03/qept-is-a-simple-ios-note-taking-app-that-is-all-about-texting-yourself/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/09/Qept-05-JPEG.jpg?resize=1200,797",
+    "publishedAt": "2023-09-04T04:59:08Z",
+    "content": "People have a habit of using messaging apps to send things to themselves. So much so that chat apps like WhatsApp, Signal, and Telegram have built-in features for bookmarking or note-taking. Develope… [+2115 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Connie Loizos",
+    "title": "This veteran VC doesn't think ARM's IPO will have the impact that everyone is hoping it will | TechCrunch",
+    "description": "The startup industry has been whistling a happy tune ever since the British chip designer ARM filed paperwork with the SEC late last month for an initial I've never understood this concept of, 'Well, the market is closed, but you take one super big company, a…",
+    "url": "https://techcrunch.com/2023/09/03/this-veteran-vc-doesnt-think-arms-ipo-will-have-the-impact-that-everyone-is-hoping-it-will/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/09/Screen-Shot-2023-09-02-at-2.31.18-PM.png?w=1040",
+    "publishedAt": "2023-09-03T19:03:07Z",
+    "content": "The startup industry has been whistling a happy tune ever since the British chip designer ARM filed paperwork with the SEC late last month for an initial public offering. The growing expectation is t… [+5535 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Kyle Wiggers",
+    "title": "Are AI models doomed to always hallucinate? | TechCrunch",
+    "description": "Large language models like ChatGPT have a bad habit of making up facts. But can this be solved at the technical level?",
+    "url": "https://techcrunch.com/2023/09/04/are-language-models-doomed-to-always-hallucinate/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/05/GettyImages-1474155562.jpg?resize=1200,713",
+    "publishedAt": "2023-09-02T14:02:37Z",
+    "content": "Large language models (LLMs) like OpenAI’s ChatGPT all suffer from the same problem: they make stuff up.\r\nThe mistakes range from strange and innocuous — like claiming that the Golden Gate Bridge was… [+7423 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Karan Bhasin",
+    "title": "4 founders give us their take on what’s ahead for construction tech | TechCrunch",
+    "description": "Founders chatted with us about construction tech trends so we could get a basic idea of where the industry is headed.",
+    "url": "https://techcrunch.com/2023/09/04/founds-discuss-future-construction-tech/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/09/GettyImages-1435948585.jpg?resize=1200,674",
+    "publishedAt": "2023-09-02T00:30:34Z",
+    "content": "Employers and employees alike are keeping a close eye on how the future of work is shaping up. For a lot of sectors, reading about the future of work evokes a picture of remote work and Zoom meetings… [+1830 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Brian Heater",
+    "title": "What’s up with Qi2 and why should you care? | TechCrunch",
+    "description": "So, what is the deal with Qi2? Why should you care and can the sequel ever truly be better than the original?",
+    "url": "https://techcrunch.com/2023/09/03/whats-up-with-qi2-and-why-should-you-care/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2020/10/MagSafe-Duo-Charger.jpg?resize=1200,675",
+    "publishedAt": "2023-09-01T22:20:36Z",
+    "content": "If youve been following the onslaught of gadget news out of Berlin this week, youve no doubt heard Qi2 pop up more than once. Notably, Anker and Mophie have both announced products that adopt the sta… [+2756 chars]"
+    },
+    {
+    "source": {
+    "id": "techcrunch",
+    "name": "TechCrunch"
+    },
+    "author": "Natasha Lomas",
+    "title": "Jude is building a bladder health champion | TechCrunch",
+    "description": "Bladder health isn't the sexiest subject in the world so it probably won't surprise you there are so few startups focused on the area. Only one actually, London-based bladder health startup, Jude, has closed a $4.24 million seed round as it gears up to expand…",
+    "url": "https://techcrunch.com/2023/09/03/jude-seed/",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2023/09/Jude-04747_02_03.jpg?resize=1200,915",
+    "publishedAt": "2023-09-01T16:38:07Z",
+    "content": "Bladder health isn’t the sexiest subject in the world so it probably won’t surprise you there are so few startups focused on the area. Only one actually, according to Jude founder Peony Li — who’s ju… [+9277 chars]"
+    }
+    ]
+    }
