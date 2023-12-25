@@ -1,22 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-
+import l1 from './pics/1.png';
+import styled from "styled-components";
+const Button = styled.button`
+background-color : black;
+color : white;
+font-size : 20;
+padding : 20px;
+`
+const Container = styled.div`
+background-color: 'blue';
+min-height: '30vh';
+min-width: '30vw';
+`
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Love is a familiar way to express emotions
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Button>Click Me</Button>
+        <Container>{l1}</Container>
+        
+          
       </header>
     </div>
   );
