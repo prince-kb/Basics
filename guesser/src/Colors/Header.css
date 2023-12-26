@@ -1,0 +1,24 @@
+
+#mainid2{
+display: flex;
+justify-content: center;
+}
+#h1{
+    min-width: fit-content;
+    width: 40vw;    
+    background-color: rgb(243, 193, 27);
+    text-align: center;
+    border-radius: 8px;
+    height: 18vh;
+    position: absolute;
+    font-size:xx-large;
+}
+#h3{
+    width: 20vw;    
+    background-color: rgb(243, 27, 27);
+    text-align: center;
+    border-radius: 5px;
+    height: 10vh;
+    position: relative;
+    top: 45px;
+}
