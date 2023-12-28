@@ -1,6 +1,7 @@
 import React from 'react'
 import './Colors/Scores.css';
 function Scores() {
+
   return (
 <>
 <div id="p" className=''>
@@ -12,6 +13,7 @@ function Scores() {
     <h2 id="c1" className="my-3">Computer</h2>
     <h2 id="c2">{1}</h2>
     </div>
+
 </div>
 </>
   )
