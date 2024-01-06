@@ -34,14 +34,18 @@
     border-radius: 15px;
     height: 10vh;
     color: white;
+    cursor: pointer;
 }
 h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: fit-content + 10px;
+    min-width: fit-content;
+    width : 15vw;
     background-color: rgb(243, 193, 27);
     text-align: center;
     border-radius: 8px;
-    height: 18vh;
+    height: 8vh;
+    transform: translateX(20px);
+    transition: all 0s 0.3s ease;
     }
