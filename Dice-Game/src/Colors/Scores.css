@@ -1,0 +1,35 @@
+#p{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.p1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#c1{
+    background-color: rgb(243, 193, 27);
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    width: 150px;
+    height: 30px;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left : 45px;
+}
+
+  #c2{
+    display: flex;
+    border-radius: 100%;
+    background-color: green;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
