@@ -1,12 +1,47 @@
 #star{
     display: flex;
+    flex-direction: row;
 }
 #s1{
-    background-color: blue;
+/* background-color: rebeccapurple; */
 }
 #dices{
-    
+    position: static;
+    /* top: 500px; */
 }
 #qq{
-    
+    position: relative;
+    left: -70px;
+    bottom: 160px;
 }
+#go{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#ggg{
+    margin: 20px;
+}
+#starrt{
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;    
+    background-color: rgb(243, 27, 27);
+    text-align: center;
+    border-radius: 15px;
+    height: 10vh;
+    color: white;
+}
+h4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: fit-content + 10px;
+    background-color: rgb(243, 193, 27);
+    text-align: center;
+    border-radius: 8px;
+    height: 18vh;
+    }
