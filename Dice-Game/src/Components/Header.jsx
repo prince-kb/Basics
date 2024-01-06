@@ -5,6 +5,7 @@ function Header() {
     <div id='mainid2' className='my-5'>
       <h1 id='h1'>Guess the number ?</h1>
       <h3 id='h3'>One Player</h3>
+      <h3 id='h3'>Two Player</h3>
     </div>
   )
 }

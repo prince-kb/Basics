@@ -5,15 +5,17 @@ import Scores from "./Components/Scores"
 import Header from "./Components/Header"
 import Start from './Components/Start'
 import Work from './Components/Work'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    {/* <Header/> */}
+    <Header/>
+    <Outlet/>
     {/* <Start/> */}
-    <Work/>
+    {/* <Work/> */}
     {/* <Scores/> */}
     {/* <Table/> */}
     {/* <div className="App my-3">
