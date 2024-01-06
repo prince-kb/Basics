@@ -1,14 +1,21 @@
 import { useState } from 'react'
 import './App.css'
 import Table from "./Components/Table"
-import Scores from "./Scores"
+import Scores from "./Components/Scores"
+import Header from "./Components/Header"
+import Start from './Components/Start'
+import Work from './Components/Work'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-<Scores />
+    {/* <Header/> */}
+    {/* <Start/> */}
+    <Work/>
+    {/* <Scores/> */}
+    {/* <Table/> */}
     {/* <div className="App my-3">
 
 <Scores />
@@ -17,7 +24,7 @@ function App() {
     <h2 id="c" className="my-3">
       Choose One
     </h2>
-    <Table></Table>
+    <Table/>
   </div>
 
   <div style={{ backgroundColor: "white" }}>

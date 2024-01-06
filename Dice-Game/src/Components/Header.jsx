@@ -1,5 +1,5 @@
 import React from 'react'
-import './Colors/Header.css'
+import '../Colors/Header.css'
 function Header() {
   return (
     <div id='mainid2' className='my-5'>

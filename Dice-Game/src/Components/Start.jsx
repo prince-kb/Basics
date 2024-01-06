@@ -1,7 +1,7 @@
 import React from 'react';
 import qm from './pics/qm.png'
 import dices from './pics/dices.png'
-import './Colors/Start.css'
+import "../Colors/Start.css"
 function Start() {
   return (
     <div id="star">

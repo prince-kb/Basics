@@ -1,5 +1,5 @@
 import React from 'react'
-import './Colors/Scores.css';
+import '../Colors/Scores.css';
 function Scores() {
 
   return (

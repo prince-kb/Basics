@@ -14,20 +14,20 @@
   background: rgb(255, 255, 0);
   border-radius: 8px;
 }
-#ll1:hover,#ll2:hover,#ll3:hover,#ll4:hover,#ll5:hover,#ll6:hover{
-  transform :translateY(-20px);
-  transition: all 0.5s 0s ease;
-
+#ll1:hover:hover,#ll2:hover,#ll3:hover,#ll4:hover,#ll5:hover,#ll6:hover{
+  transform :translateY(-25px);
+  transition: all 0.3s 0s ease-in-out;
 }
+
 #dices{
-  position: absolute;
+  /* position: absolute; */
 }
 #c{
   background-color: rgb(224, 62, 26);
   border-radius: 20px;
   text-align: center;
   color: white;
-  width: 150px;
+  width: 200px;
   height: 30px;
   font-size: large;
   display: flex;
@@ -37,11 +37,21 @@
   left : 45px;
 }
 
+#gg{
+  width: 80vw;
+  min-height: 70vh;
+}
 #mainid{
   display: flex;
-  justify-content: space-around;
-  
+  justify-content: space-evenly;
 }
 #num{
   display: flex;
+
+}
+
+#wrapper1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
