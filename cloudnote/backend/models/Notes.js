@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {Schema} = mongoose;
 const NotesSchema = new Schema({
     name :{
         type : String,
@@ -20,7 +21,7 @@ const NotesSchema = new Schema({
     },
     date : {
         type : Date,
-        Default : Date.now
+        Default : Date.now()
     }
 })
 
