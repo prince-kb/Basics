@@ -7,10 +7,10 @@ import l5 from "./pics/5.png"
 import l6 from "./pics/6.png"
 
 
-export default function Table() {
+export default function Table(props) {
   return (
     <div>
-      <table id="dices" className="" >
+      <table id="dices" className="" style ={{backgroundColor:{this.props.color}}}>
   <tr>
     <td><img src={l1} alt = "None" height="80px" className="mx-2 my-2 bg-light"  id="ll1" /></td>
     <td><img src={l2} alt = "None" height="80px" className="mx-2 my-2 bg-light"  id="ll2" /></td>
