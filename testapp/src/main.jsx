@@ -9,7 +9,7 @@ import Contact from './Components/Contact.jsx'
 import Footer from './Components/Footer.jsx'
 import RandNumGenerator from './Components/RandNumGenerator.jsx'
 import RandColGenerator from './Components/RandColGenerator.jsx'
-
+import MongoDB from './Components/Datas/MongoDB.jsx';
 const router = createBrowserRouter([
   {
     path : '/',
