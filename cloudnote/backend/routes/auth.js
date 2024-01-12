@@ -8,27 +8,36 @@ const {query, validationResult} = require('express-validator')
 //         num : 34
 //     }
 //     // res.json(a);
-//     // res.send("Hii i am working")
-//     console.log(req.body)
 //     res.send(req.body)
 // })
-router.post('',[
-    query('name').notEmpty(),
-    query('password').isAlphanumeric(),
-    query('email').isEmail()
-]
-,(req,res)=>{
-    const jsonResult = validationResult(res);
-    console.log(jsonResult.isEmpty())
+/* router.post('/',[query('name').isLength({min : 3})],(req,res)=>{
+    const result = validationResult(req);
+    console.log(result)
+    if (!result.isEmpty()) {
+        const u = User(req.body);
+        u.save();
+        return res.send(`Hello, ${req.query.name}!`);
+    }
+    
+    res.send({ errors: result.array() });
+    // const jsonResult = validationResult(res);
+    // console.log(jsonResult.isEmpty())
 
-    if(!jsonResult.isEmpty()){
-        return res.send("Name cannot be empty");
-    }
-    else {
-    const u = User(req.body);
-    u.save();
-    res.send("Added body data to database")
-    }
-})
+    // if(!jsonResult.isEmpty()){
+    //     return res.status(200).json({errors : errors.Array()});
+    // }
+
+    // res.send("Added body data to database")
+}) */
+
+router.post('/', query('name').notEmpty(), (req, res) => {
+    const result = validationResult(req);
+    console.log(query('name').notEmpty().toBoolean)
+    // if (!result.isEmpty()) {
+    //   return res.send(`Hello, ${req.query.name}!`);
+    // }
+  
+    res.send({ errors: result.array() });
+  });
 
 module.exports = router;

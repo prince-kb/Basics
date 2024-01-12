@@ -6,6 +6,8 @@ const mongoURL="mongodb://localhost:27017";
 //     .catch(err,()=>{console.log("Cannot connect")})
 // }
 async function connectToMongo() {
-    await mongoose.connect(mongoURL).then(()=> console.log("Connected to Mongo Successfully")).catch(err => console.log(err));
+    await mongoose.connect(mongoURL)
+    .then(()=> console.log("Connected to Mongo Successfully"))
+    .catch(err => console.log(`Cannot connect ${mongoURL} does not exist `+err));
   }
 module.exports=connectToMongo;
