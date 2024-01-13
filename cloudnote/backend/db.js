@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURL="mongodb://localhost:27017";
+const mongoURL="mongodb://localhost:27017/usersData";
 // const connectToMongo=async()=>{
 //     await mongoose.connect(mongoURL)
 //     .then(console.log("CONNECTED"))

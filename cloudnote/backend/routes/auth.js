@@ -16,17 +16,29 @@ router.post('/',
 [ 
     body('name').notEmpty(),
     body('email').isEmail(),
-    body('password').isAlphanumeric()
+    body('password','Password length must be greater than 4').isLength({min : 4})
 ], 
 (req, res) => {
     const result = validationResult(req);
-    if (result.isEmpty()) {
-        const u = User(req.body);
-        u.save();
-        return res.send(`Hello, ${req.body.name}!, your schema is added`);
+    if (!result.isEmpty()) {
+        res.send({ errors: result.array() });
     }
     else {
-        res.send({ errors: result.array() });
+     /* const u = User(req.body);
+        u.save();
+        return res.send(`Hello, ${req.body.name}!, your schema is added`); */
+        //OR
+        User.create({
+            name : req.body.name,
+            email : req.body.email,
+            password : req.body.password,
+            description : req.body.description
+        }).then(user=>{res.json(user)
+            console.log("User added")
+        })
+        .catch(err=>{console.log(err)
+        res.json({error : 'Enter unique attributes', message : err.message });
+    })
     }
   });
 
