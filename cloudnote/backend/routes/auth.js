@@ -18,7 +18,7 @@ const bcryptjs = require('bcryptjs')
 //Using jsonwebtoken to simplify login process and not dealing with security
 //It basically generates a token for signing in and has three parts - Header,payload and signature
 var jwt = require('jsonwebtoken');
-var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+const jwwwtoken = "hiiieyo"
 
 //To add data (here we are adding login information) 'post' is used majorly
 router.post('/', 
@@ -58,8 +58,14 @@ async (req, res) => {
             password : securePassword,
             description : req.body.description
         })
-        //This line will return the user as response
+        const data = {
+            userid : req.body.userid
+        }
+        const sign = jwt.sign(data,jwwwtoken)
         console.log(req.body.name + " added")
+
+
+        //This line will return the user as response
         res.send("Added user : " + req.body.name)
         
     }
