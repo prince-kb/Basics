@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 //This line helps the app to not full depened on the current file and use another file to simplify
 //So instead of get request , we areu= using use request
 // app.use('/auth',require('./routes/auth'));
-app.use('/auth/signup',require('./routes/auth'));
+app.use('/auth',require('./routes/auth'));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

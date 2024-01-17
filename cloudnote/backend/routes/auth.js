@@ -21,7 +21,7 @@ var jwt = require('jsonwebtoken');
 const jwwwtoken = "hiiieyo"
 
 //To add data (here we are adding login information) 'post' is used majorly
-router.post('/', 
+router.post('/signup', 
 [ 
     body('name').notEmpty(),
     body('email').isEmail(),
@@ -49,7 +49,9 @@ async (req, res) => {
             //This line should must be declared await
         let user = await User.findOne({email : req.body.email})
         if(user){
-            return res.status(400).json({error : "Email already exist",message : "Try using another email"})
+            //We cannot tell users that this email already exist as this will help attackers in some way
+            //Instead we will just response by some error occured
+            return res.status(400).json({error : "Invalid credentials",message : "Try using another email"})
         }
         //user is a variable and it will be send as response to save the data
         user = User.create({
@@ -83,6 +85,42 @@ async (req, res) => {
         .catch(err=>{console.log(err)
         res.json({error : 'Enter unique attributes', message : err.message });
     }) */
+  });
+
+router.post('/login', 
+[ 
+    body('email').isEmail(),
+    body('password').exists()
+], 
+async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        res.send({ errors: result.array() });
+    }
+        const {email,password}= req.body;
+        try{
+        let user = await User.findOne({email})
+        if(!user){
+            return res.status(400).json({error : "Invalid credentials"});
+        }
+        const passComparison = bcryptjs.compare(password,user.password);
+        if(!passComparison){
+            return res.status(400).json({error : "Invalid credentials"});
+        }
+
+        const data = {
+            user:{
+                id : user.id
+            }
+        }
+        const authToken = jwt.sign(data,jwwwtoken)
+        res.json(authToken)
+        
+    }
+    catch(error){
+        console.log(error)
+        return res.status(500).json({error : "Some error occured from our side",message : "We are trying to fix it"})
+    }
   });
 
 module.exports = router;
