@@ -59,14 +59,17 @@ async (req, res) => {
             description : req.body.description
         })
         const data = {
-            userid : req.body.userid
+            user:{
+                id : user.id
+            }
         }
-        const sign = jwt.sign(data,jwwwtoken)
+        const authToken = jwt.sign(data,jwwwtoken)
         console.log(req.body.name + " added")
 
 
         //This line will return the user as response
-        res.send("Added user : " + req.body.name)
+        // res.send("Added user : " + req.body.name)
+        res.json(authToken)
         
     }
     catch(error){
