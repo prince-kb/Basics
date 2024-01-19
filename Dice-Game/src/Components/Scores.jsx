@@ -6,11 +6,11 @@ function Scores() {
   return (
 <>
 <div id="p" className=''>
-    <div class="p1" >
+    <div className="p1" >
     <h2 id="c1" className="my-3">Player 1</h2>
     <h2 id="c2">{score1}</h2>
     </div>
-    <div class="p1" >
+    <div className="p1" >
     <h2 id="c1" className="my-3">Computer</h2>
     <h2 id="c2">{score2}</h2>
     </div>
