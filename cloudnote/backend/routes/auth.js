@@ -4,6 +4,8 @@ const User = require("../models/User");
 //It should b einstalled seperately
 const { body, validationResult } = require("express-validator");
 
+//Middleware
+const fetchuser = require('../middleware/fetchuser')
 //To encrypt a password we use the following package
 const bcryptjs = require("bcryptjs");
 // router.get('/',(req,res)=>{
@@ -83,9 +85,7 @@ router.post(
       res.json(authToken);
     } catch (error) {
       console.log(error);
-      return res
-        .status(500)
-        .json({
+      return res.status(500).json({
           error: "Some error occured from our side",
           message: "We are trying to fix it",
         });
@@ -120,7 +120,7 @@ router.post(
       if (!passComparison) {
         return res.status(400).json({ error: "Invalid credentials" });
       }
-      //Returning json token as response for now
+      //Returning id as json because retrieval of data from id is faster
       const data = {
         user: {
           id: user.id,
@@ -130,12 +130,22 @@ router.post(
       res.json(authToken);
     } catch (error) {
       console.log(error);
-      return res
-        .status(500)
-        .json({
+      return res.status(500).json({
           error: "Some error occured from our side",
           message: "We are trying to fix it",
         });
+    }
+  }
+)//Third Route : To give user details on successful login using web token
+//Using fetchuser function as middleware to authenticate user 
+router.post("/getuserid", fetchuser, async (req, res) => {
+    try {
+        let userId = req.user.id;
+        const user = await User.findById(userId).select("-password")
+        res.send("JGVIU")
+    } catch (error) {
+      console.log(error);
+      res.status(401).send("Internal server error");
     }
   }
 );
