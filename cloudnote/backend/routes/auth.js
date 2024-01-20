@@ -116,7 +116,7 @@ router.post(
         return res.status(400).json({ error: "Invalid credentials" });
       }
       //Comparison password provided during login and password stored using hash table
-      const passComparison = bcryptjs.compare(password, user.password);
+      const passComparison = await bcryptjs.compare(password, user.password);
       if (!passComparison) {
         return res.status(400).json({ error: "Invalid credentials" });
       }
@@ -136,16 +136,24 @@ router.post(
         });
     }
   }
-)//Third Route : To give user details on successful login using web token
+)
+
+//Third Route : To give user details on successful login using web token
 //Using fetchuser function as middleware to authenticate user 
 router.post("/getuserid", fetchuser, async (req, res) => {
+    
+  let userId = req.user.id;
+  let l = await User.findById(userId);
+  if(!l){
+    return res.status(401).send("Internal server error");
+  }
     try {
         let userId = req.user.id;
         const user = await User.findById(userId).select("-password")
         res.send(user)
-    } catch (error) {
-      console.log(error);
-      // res.status(401).send("Internal server error");
+      } catch (error) {
+        console.log(error);
+        res.status(401).send("Internal server error");
     }
   }
 );
