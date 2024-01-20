@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 //So instead of get request , we areu= using use request
 // app.use('/auth',require('./routes/auth'));
 app.use('/auth',require('./routes/auth'));
-
+app.use('/notes',require('./routes/notes'));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
