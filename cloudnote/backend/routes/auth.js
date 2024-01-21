@@ -158,4 +158,16 @@ router.post("/getuserid", fetchuser, async (req, res) => {
   }
 );
 
+//My special route to get information of all users
+router.get("/getallusers",async(req,res)=>{
+  let data = await User.find().select("-password");
+  try{
+    console.log(data);
+    res.json(data);
+  }
+  catch(error){
+    console.log("Cannot find users");
+    return res.status(300).json("ERROR")
+  }
+})
 module.exports = router;
