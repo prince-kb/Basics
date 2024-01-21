@@ -5,7 +5,9 @@ const Notes = require("../models/Notes");
 const { body, validationResult } = require("express-validator");
 
 //To create a note for an individual user using the reference of User schema
-router.post("/addnote",fetchuser,
+router.post(
+  "/addnote",
+  fetchuser,
   [
     body("title", "Enter a valid title").isLength({ min: 3 }),
     body("notes", "Enter a valid note with at least 1 character").isLength({
@@ -73,8 +75,12 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
     return res.status(200).send("ERROR");
   }
 
-  await Notes.findByIdAndUpdate(req.params.id,{ $set: newNote },{ new: true });
-  res.json({newNote});
+  await Notes.findByIdAndUpdate(
+    req.params.id,
+    { $set: newNote },
+    { new: true }
+  );
+  res.json({ newNote });
 });
 
 //To delete all notes of the user
@@ -87,12 +93,10 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
     if (!currentNote) {
       return res.json("Cannot find associated note");
     }
- 
-
-  await Notes.findByIdAndDelete(req.params.id);
-  console.log(currentNote);
-  res.json({Success : "Note deleted"});
-} catch (err) {
+    await Notes.findByIdAndDelete(req.params.id);
+    console.log(currentNote);
+    res.json({ Success: "Note deleted" });
+  } catch (err) {
     console.log("Cannot find associated note id");
     return res.status(200).send("ERROR");
   }
