@@ -3,7 +3,7 @@ import noteContext from '../context/Notes/NoteContext'
 function Home() {
     const a = useContext(noteContext);
 
-    /*This is a render component of componentDidMount so we need to add eslint..... line to hide the error*/
+    {/*This is a render component of componentDidMount so we need to add eslint..... line to hide the error*/}
     useEffect(() => {
         a.update();
         // eslint-disable-next-line
