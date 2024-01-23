@@ -26,6 +26,9 @@ function Navbar() {
               <li>
                 <Link to="contact" className={`nav-link px-2 fw-bold nav-link ${location === "/contact" ? "active": ""}`}>Contact</Link>
               </li>
+              <li>
+                <Link to="mynotes" className={`nav-link px-2 fw-bold nav-link ${location === "/mynotes" ? "active": ""}`}>Notes</Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link disabled" aria-disabled="true">
                   Disabled
@@ -33,6 +36,10 @@ function Navbar() {
               </li>
             </ul>
           </div>
+          <form className="d-flex" role="search">
+        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button className="btn btn-outline-success" type="submit">Search</button>
+      </form>
         </div>
       </nav>
     </>

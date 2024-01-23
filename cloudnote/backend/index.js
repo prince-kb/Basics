@@ -17,5 +17,5 @@ app.get('/', (req, res) => {
 app.use('/auth',require('./routes/auth'));
 app.use('/notes',require('./routes/notes'));
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Cloud NoteBook App listening on port ${port}`)
 })

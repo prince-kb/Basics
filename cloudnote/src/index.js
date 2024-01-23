@@ -6,6 +6,7 @@ import Home from './Components/Home';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import './index.css';
+import Notes from './Components/AllNotes';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path : "contact",
         element : <Contact/>
+      },
+      {
+        path : "mynotes",
+        element : <Notes/>
       }
     ]
   }

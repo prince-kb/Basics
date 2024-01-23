@@ -1,19 +1,9 @@
-import React, { useContext, useEffect } from 'react'
-import noteContext from '../context/Notes/NoteContext'
 function Home() {
-    const a = useContext(noteContext);
 
-    /*This is a render component of componentDidMount so we need to add eslint..... line to hide the error*/
-    useEffect(() => {
-        a.update();
-        // eslint-disable-next-line
-    }, [])
-    
   return (
       /* a.first.name means that first is imported as a state component named as first and its name and department value are read*/
     <div>
       <h1 className="h1 container">HOME</h1>
-        <h2 className="h2 container">Hello {a.state.name}, you are allocated {a.state.department} branch</h2>
     <h2 className="h2 container">Please fill the notes form</h2>
         <form className='container'>
   <div className="mb-3 mxy-4">
