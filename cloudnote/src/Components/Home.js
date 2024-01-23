@@ -3,17 +3,34 @@ import noteContext from '../context/Notes/NoteContext'
 function Home() {
     const a = useContext(noteContext);
 
-    {/*This is a render component of componentDidMount so we need to add eslint..... line to hide the error*/}
+    /*This is a render component of componentDidMount so we need to add eslint..... line to hide the error*/
     useEffect(() => {
         a.update();
         // eslint-disable-next-line
     }, [])
     
   return (
-    <div>
-      <h1 className="h1">HOME</h1>
       /* a.first.name means that first is imported as a state component named as first and its name and department value are read*/
-        <h2 className="h2">Hello {a.state.name}, you are allocated {a.state.department} branch</h2>
+    <div>
+      <h1 className="h1 container">HOME</h1>
+        <h2 className="h2 container">Hello {a.state.name}, you are allocated {a.state.department} branch</h2>
+    <h2 className="h2 container">Please fill the notes form</h2>
+        <form className='container'>
+  <div className="mb-3 mxy-4">
+    <label for="exampleInputEmail1" className="form-label">Email address</label>
+    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div className="mb-3">
+    <label for="exampleInputPassword1" className="form-label">Password</label>
+    <input type="password" className="form-control" id="exampleInputPassword1"/>
+  </div>
+  <div className="mb-3 form-check">
+    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" className="btn btn-primary">Submit</button>
+</form>
     </div>
   )
 }

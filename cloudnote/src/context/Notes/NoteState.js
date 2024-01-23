@@ -7,7 +7,7 @@ const NoteState = (props)=>{
         "department" : "CSE"
     }
 
-   {/*  Using statehook to pass the value as props and using useEffect hook at the place we want to render it */}
+   /*  Using statehook to pass the value as props and using useEffect hook at the place we want to render it */
     const [state, setState] = useState(info);
     const update=()=>{
         setTimeout(() => {

@@ -1,11 +1,15 @@
-import React from "react";
-import { Link} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link,useLocation} from "react-router-dom";
 function Navbar() {
+  let location = useLocation();
+  useEffect(()=>{
+    console.log(location.pathname)
+  })
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-        <Link to="" className="navbar-brand">Navbar</Link>
+        <Link to="" className="navbar-brand fw-bold">Cloud NoteBook</Link>
 
           <button
             className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,13 +18,13 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li>
-                <Link to="" className="nav-link px-2">Home</Link>
+                <Link to="" className={`nav-link px-2 fw-bold nav-link ${location === "/" ? "active": ""}`}>Home</Link>
               </li>
               <li>
-                <Link to="about" className="nav-link px-2">About</Link>
+                <Link to="about" className={`nav-link px-2 fw-bold nav-link ${location === "/about" ? "active": ""}`}>About</Link>
               </li>
               <li>
-                <Link to="contact" className="nav-link px-2">Contact</Link>
+                <Link to="contact" className={`nav-link px-2 fw-bold nav-link ${location === "/contact" ? "active": ""}`}>Contact</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link disabled" aria-disabled="true">
