@@ -2,6 +2,7 @@ import React from 'react'
 import qm2 from "./pics/qm2.png";
 import Scores from './Scores';
 import Table from './Table';
+import Selected from './Selected';
 import "../Colors/App.css"
 import { useState } from 'react';
 
@@ -19,6 +20,8 @@ function Work() {
     </h2>
     <Table/>
   </div>
+
+    
 
   <div id="wrapper1" style={{ backgroundColor: "white", display : "flex" }}>
     <div className='mx-3'> <img src={qm2} alt="None" height="100px" className="my-3" /></div>

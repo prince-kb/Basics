@@ -1,4 +1,5 @@
 import React from 'react'
+import TableContext from './context/TableContext'
 import l1 from "./pics/1.png"
 import l2 from "./pics/2.png"
 import l3 from "./pics/3.png"
@@ -10,14 +11,11 @@ import l6 from "./pics/6.png"
 export default function Table(props) {
 
   const selected = (p)=>{
-    p.target.style.{
-      backgroundColor = "blue",
-      margin = "20px",
-      padding = "20px"
-    }
+    return p.target;    
   }
 
   return (
+    <TableContext.Provider value = {selected}>
     <div>
       <table id="dices" className="" style ={{backgroundColor: "yellow"}}>
   <tr>
@@ -32,5 +30,6 @@ export default function Table(props) {
   </tr>
 </table>
     </div>
+    </TableContext.Provider>
   )
 }
