@@ -17,6 +17,8 @@ function NoteItem(props) {
             <p className="card-text">{note.notes}</p>
           </div>
         </div>
+
+        
       </div>
   );
 }
