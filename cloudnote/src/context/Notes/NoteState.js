@@ -78,9 +78,31 @@ const NoteState = (props)=>{
       ]
 
       const [notes, setNotes] = useState(allNotes)
+
+      //Here we need to call the api also
+      const addNote=(title,notes,tag)=>{
+        let n = {
+          "_id": "65abef6b8e54e600d684fc17",
+          "user": "65abef3f8e54e600d684fc12",
+          "title": "My first note",
+          "notes": "Saved the note to the user's database",
+          "tag": "First1",
+          "date": "2024-01-20T16:06:03.677Z",
+          "__v": 0
+        }
+        setNotes(notes.push(n));
+      }
+
+      const deleteNote=()=>{
+        
+      }
+      const editNote=()=>{
+        
+      }
+
     return(
         /* Sending first and update as props to the NoteContext.Provider function so that it will also be passed to all the childrens */
-        <NoteContext.Provider value={{notes,setNotes}}>
+        <NoteContext.Provider value={{notes,setNotes,addNote,deleteNote,editNote}}>
         {props.children}
         </NoteContext.Provider>
      )}
