@@ -5,8 +5,8 @@ import App from './App';
 import Home from './Components/Home';
 import About from './Components/About';
 import Contact from './Components/Contact';
-import './index.css';
 import AllNotes from './Components/AllNotes';
+import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 

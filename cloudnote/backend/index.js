@@ -8,9 +8,10 @@ app.use(express.json())
 
 //res means response, req eans request
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
   res.send('Hello World1!')
-})
+}) */
+
 //This line helps the app to not full depened on the current file and use another file to simplify
 //So instead of get request , we areu= using use request
 // app.use('/auth',require('./routes/auth'));

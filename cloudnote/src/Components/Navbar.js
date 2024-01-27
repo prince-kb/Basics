@@ -3,7 +3,7 @@ import { Link,useLocation} from "react-router-dom";
 function Navbar() {
   let location = useLocation();
   useEffect(()=>{
-    console.log(location.pathname)
+    // console.log(location.pathname)
   })
   return (
     <>

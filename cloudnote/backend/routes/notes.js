@@ -39,7 +39,7 @@ router.post(
 router.get("/fetchnotes", fetchuser, async (req, res) => {
   try {
     const n = await Notes.find({ user: req.user.id });
-    console.log(n);
+    // console.log(n);
     // console.log(req.user.id)
     res.json(n);
   } catch {
@@ -53,8 +53,8 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
   try {
     const currentNote = await Notes.findById(req.params.id);
     if (currentNote.user.toString() != req.user.id) {
-      console.log(" c = " + currentNote.user);
-      console.log("r = " + req.params.id);
+      // console.log(" c = " + currentNote.user);
+      // console.log("r = " + req.params.id);
       return res.status(401).json("Authorization revoked");
     }
     if (!currentNote) {
