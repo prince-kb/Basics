@@ -4,7 +4,7 @@ import NoteContext from "./NoteContext";
 const NoteState = (props)=>{
     const allNotes = [
         {
-          "_id": "65abef6b8e54e600d684fc17",
+          "_id": "65abef6b8e5fv4e600dds684fc17",
           "user": "65abef3f8e54e600d684fc12",
           "title": "My first note",
           "notes": "Saved the note to the user's database",
@@ -22,7 +22,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "65abef868e54e600d684fc1a",
+          "_id": "65abef868e54e600d684fdfvzc1a",
           "user": "65abef3f8e54e600d684fc12",
           "title": "My third note",
           "notes": "Saved the note to the user's database",
@@ -40,7 +40,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "65abef868e54e600d6er8lih4fc1a",
+          "_id": "65abef868e54e600d6er8lih4dfvfc1a",
           "user": "65abef3f8e54e600d684fc12",
           "title": "My fifth note",
           "notes": "Saved the note to the user's database",
@@ -58,7 +58,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "65abef868e54e600d6fr84fc1a",
+          "_id": "65abef868e54e600d6fr84fcdfv1a",
           "user": "65abef3f8e54e600d684fc12",
           "title": "My seventh note",
           "notes": "Saved the note to the user's database",
@@ -80,17 +80,17 @@ const NoteState = (props)=>{
       const [notes, setNotes] = useState(allNotes)
 
       //Here we need to call the api also
-      const addNote=(title,notes,tag)=>{
+      const addNote=(z)=>{
         let n = {
           "_id": "65abef6b8e54e600d684fc17",
           "user": "65abef3f8e54e600d684fc12",
-          "title": "My first note",
-          "notes": "Saved the note to the user's database",
-          "tag": "First1",
-          "date": "2024-01-20T16:06:03.677Z",
+          "title": z.title,
+          "notes": z.notes,
+          "tag": z.tag,
+          "date": new Date(),
           "__v": 0
         }
-        setNotes(notes.push(n));
+        setNotes(notes.concat(n));
       }
 
       const deleteNote=()=>{

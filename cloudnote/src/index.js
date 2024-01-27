@@ -6,7 +6,7 @@ import Home from './Components/Home';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import './index.css';
-import Notes from './Components/AllNotes';
+import AllNotes from './Components/AllNotes';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path : "mynotes",
-        element : <Notes/>
+        element : <AllNotes/>
       }
     ]
   }

@@ -18,7 +18,7 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li>
-                <Link to="" className={`nav-link px-2 fw-bold nav-link ${location === "/" ? "active": ""}`}>Home</Link>
+                <Link to="" className={`nav-link px-2 fw-bold  ${location === "/" ? "active": ""}`}>Home</Link>
               </li>
               <li>
                 <Link to="about" className={`nav-link px-2 fw-bold nav-link ${location === "/about" ? "active": ""}`}>About</Link>
