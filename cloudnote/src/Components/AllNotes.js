@@ -1,20 +1,24 @@
 import NoteContext from "../context/Notes/NoteContext";
 
-import { useContext,useState } from "react";
+import { useContext,useEffect,useState } from "react";
 
 import React from "react";
 import NoteItem from "./NoteItem";
 function Notes() {
   const [n,setN]=useState({title : "",notes : "", tag : ""})
   const note = useContext(NoteContext);
-  const { notes,addNote} = note;
+  const { notes,addNote,fetchmyNotes} = note;
   const onChange=(e)=>{
     setN({...n,[e.target.name] : e.target.value})
   }
   const submit=(e)=>{
     e.preventDefault();
-    addNote(n);
+    addNote(n.title,n.notes,n.tag);
   }
+  useEffect(() => {
+    fetchmyNotes();
+  }, [])
+  
   return (
     <>
       <div className="my-3">
@@ -37,7 +41,7 @@ function Notes() {
 
         <div className="d-flex justify-content-center">
 
-        <button className="btn btn-primary"  type="button" data-bs-toggle="collapse" data-bs-target="#ww" aria-expanded="false" aria-controls="ww">
+        <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#ww" aria-expanded="false" aria-controls="ww">
           Show my notes
         </button>
         <div style={{minHeight: "120px"}}>
