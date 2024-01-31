@@ -81,7 +81,7 @@ const NoteState = (props)=>{
       }
 
       const deleteNote=async(id)=>{
-        const response = await fetch(`${host}/notes/deletenote/65acf440769613c8c8ca17f2`, {
+        const response = await fetch(`${host}/notes/deletenote/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

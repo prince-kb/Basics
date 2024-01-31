@@ -6,6 +6,7 @@ const app = express()
 const port = 5000
  
 app.use(express.json())
+//Using cors will enable connection to backend using javascript and without actually using an anchor or href or link.
 app.use(cors())
 
 //res means response, req eans request
