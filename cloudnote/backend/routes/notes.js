@@ -19,6 +19,7 @@ router.post(
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors);
+      console.log("Cannot add the note")
       return res.status(400).json({ errors: errors.array() });
     }
     const { title, notes, tag } = req.body;
@@ -69,8 +70,8 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
       newNote.tag = tag;
     }
   } catch (err) {
-    console.log("Cannot find associated note id");
-    return res.status(200).send("ERROR");
+    // console.log("Cannot find associated note id");
+    return res.status(200).send({error :"ERROR"});
   }
 
   await Notes.findByIdAndUpdate(
@@ -83,6 +84,7 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
 
 //To delete all notes of the user
 router.delete("/deletenote/:id", fetchuser, async (req, res) => {
+  // console.log(req.params.id)
   try {
     const currentNote = await Notes.findById(req.params.id);
     if (currentNote.user.toString() != req.user.id) {
@@ -91,12 +93,14 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
     if (!currentNote) {
       return res.json("Cannot find associated note");
     }
+    else{
     await Notes.findByIdAndDelete(req.params.id);
     console.log(currentNote);
-    // res.json({ Success: "Note deleted" });
+    res.json({ Success: "Note deleted" });
+    }
   } catch (err) {
     console.log("Cannot find associated note id");
-    return res.status(200).send("ERROR");
+    return res.status(200).send({error :"ERROR"});
   }
 });
 module.exports = router;
