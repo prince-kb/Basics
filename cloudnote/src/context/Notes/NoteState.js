@@ -1,41 +1,24 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import NoteContext from "./NoteContext";
 
 const NoteState = (props)=>{
   //Since we are using host:5000 for backend, we will need the same and not host:3000 which is for our frontend
     const host = "http://localhost:5000"
 
+
     const allNotes = [
         {
           "_id": "fakeid1",
           "user": "65abef3f8e54e600d684fc12",
-          "title": "My first note",
-          "notes": "Saved the note to the user's database",
-          "tag": "default",
-          "date": new Date(),
-          "__v": 0
-        },
-        {
-          "_id": "fakeid2",
-          "user": "65abef3f8e54e600d684fc12",
-          "title": "My second note",
-          "notes": "Saved the note to the user's database",
-          "tag": "default",
-          "date": new Date(),
-          "__v": 0
-        },
-        {
-          "_id": "fakeid3",
-          "user": "65abef3f8e54e600d684fc12",
-          "title": "My third note",
-          "notes": "Saved the note to the user's database",
+          "title": "My first noteeee",
+          "notes": "Example noteeee",
           "tag": "default",
           "date": new Date(),
           "__v": 0
         }
       ]
 
-      const [notes, setNotes] = useState(allNotes)
+      const [notee, setNotes] = useState(allNotes)
       const fetchmyNotes=async()=>{
           const response = await fetch(`${host}/notes/fetchnotes`, {
             method: "GET",
@@ -45,12 +28,13 @@ const NoteState = (props)=>{
             }
           });
           const rest = await response.json();
+          console.log("Notes fetched")
           setNotes(rest);
         }
         
-      //Here we need to call the api also
+      //API calling for addnote functionality to mongodb
       const addNote=async (title,notes,tag)=>{
-          try{
+        try{
           const response = await fetch(`${host}/notes/addnote`, {
             method: "POST",
             headers: {
@@ -59,15 +43,13 @@ const NoteState = (props)=>{
             },
             body: JSON.stringify({title,notes,tag}),
           });
-          const rest = await response.json();
-          console.log("Note added")
-          console.log(rest)
+          const res = await response.json();
+          console.log(res)
         }
         catch(err){
           console.log(err)
         }
-
-        
+        console.log(title,notes,tag)
         let n = {
           "_id": "65abef6b8e54e600d684fc17",
           "user": "65abef3f8e54e600d684fc12",
@@ -77,7 +59,8 @@ const NoteState = (props)=>{
           "date": new Date(),
           "__v": 0
         }
-        setNotes(notes.concat(n));
+        setNotes(notee.concat(n));
+        console.log("Note fetched")
       }
 
       const deleteNote=async(id)=>{
@@ -92,7 +75,7 @@ const NoteState = (props)=>{
         console.log("Note deleted")
         console.log(rest)
         console.log(id)
-        setNotes(notes.filter((allNotes)=>{return allNotes._id!==id}))
+        setNotes(notee.filter((allNotes)=>{return allNotes._id!==id}))
       }
       const editNote=(id,title,notes,tag)=>{
         for (let index = 0; index < allNotes.length; index++) {
@@ -107,7 +90,7 @@ const NoteState = (props)=>{
 
     return(
         /* Sending first and update as props to the NoteContext.Provider function so that it will also be passed to all the childrens */
-        <NoteContext.Provider value={{notes,setNotes,addNote,deleteNote,editNote,fetchmyNotes}}>
+        <NoteContext.Provider value={{notee,setNotes,addNote,deleteNote,editNote,fetchmyNotes}}>
         {props.children}
         </NoteContext.Provider>
      )}

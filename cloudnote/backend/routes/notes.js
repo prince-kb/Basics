@@ -27,8 +27,6 @@ router.post(
       title,
       notes,
       tag,
-      // title : req.body.title,
-      // notes : req.body.notes
     });
     console.log("Note added");
     res.send(note);
@@ -95,7 +93,7 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
     }
     await Notes.findByIdAndDelete(req.params.id);
     console.log(currentNote);
-    res.json({ Success: "Note deleted" });
+    // res.json({ Success: "Note deleted" });
   } catch (err) {
     console.log("Cannot find associated note id");
     return res.status(200).send("ERROR");

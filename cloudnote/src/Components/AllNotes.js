@@ -7,13 +7,15 @@ import NoteItem from "./NoteItem";
 function Notes() {
   const [n,setN]=useState({title : "",notes : "", tag : ""})
   const note = useContext(NoteContext);
-  const { notes,addNote,fetchmyNotes} = note;
+  const { notee,addNote,fetchmyNotes} = note;
   const onChange=(e)=>{
     setN({...n,[e.target.name] : e.target.value})
   }
   const submit=(e)=>{
     e.preventDefault();
+    setN({...n,[e.target.name] : e.target.value})
     addNote(n.title,n.notes,n.tag);
+    // setN({title : "",notes : "", tag : "",[e.target.name] : e.target.value})
   }
   useEffect(() => {
     fetchmyNotes();
@@ -49,8 +51,8 @@ function Notes() {
             <div className="card card-body" style={{width: "80vw"}}>
             <div className="row">
                 <h2 className="h2 d-flex justify-content-center"> <b>AllNotes</b> </h2>
-                {notes.map((note) => {
-                  return <NoteItem note={note} key={note._id} />;
+                {notee.map((note) => {
+                  return <NoteItem note={note} key={note.date} />;
                 })}
               </div>    
             </div>
