@@ -45,7 +45,8 @@ const NoteState = (props)=>{
             },
             body: JSON.stringify({title,notes,tag}),
           });
-          const res = await response.json();
+          const rest = await response.json();
+          console.log(rest)
         }
         catch(err){
           console.log(err)
