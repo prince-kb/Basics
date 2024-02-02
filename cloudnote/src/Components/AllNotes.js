@@ -6,9 +6,9 @@ import React from "react";
 import NoteItem from "./NoteItem";
 function Notes() {
   const [n,setN]=useState({title : "" ,notes : "", tag : ""})
-  const [nn,setNn]=useState({title : "",notes : "", tag : ""})
+  const [nn,setNn]=useState({id : "" ,title : "tttttt",notes : "", tag : ""})
   const note = useContext(NoteContext);
-  const { notee,addNote} = note;
+  const { notee,addNote,editNote} = note;
 
   const onChange=(e)=>{
     setN({...n,[e.target.name] : e.target.value})
@@ -21,19 +21,17 @@ function Notes() {
   }
   const onChangeee=(e)=>{
     setNn({...nn,[e.target.name] : e.target.value})
-    console.log(nn)
+    
   }
   const submittt=(e)=>{
     e.preventDefault();
     setNn({...nn,[e.target.name] : e.target.value})
-    // addNote(nn.title,nn.notes,nn.tag);
     console.log("Updating")
-    // setN({title : "",notes : "", tag : "",[e.target.name] : e.target.value})
   }
-
+  
   const updateNote=(e)=>{
     ref.current.click()
-    console.log(e);
+    setNn({id : e.user,title : e.title,notes : e.notes,tag : e.tag})
   }
   const ref = useRef(null)
 
@@ -63,7 +61,7 @@ function Notes() {
 
         {/* Edit Note Modal */}
             <div className="d-flex justify-content-center my-3">
-          <button type="button" className="btn btn-primary" data-bs-toggle="modal" ref={ref} data-bs-target="#staticBackdrop">
+          <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" ref={ref} data-bs-target="#staticBackdrop">
             Edit Note
           </button>
           <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -79,15 +77,15 @@ function Notes() {
                 <h3 className="h3 container">Please fill the notes form</h3>
                   <form className="container mb-3">
                   <div className="form-floating mb-3">
-                      <input type="text" className="form-control" id="etitle" name="etitle" onChange={onChangeee}/>
+                      <input type="text" className="form-control" id="etitle" name="etitle" value={nn.title} onChange={onChangeee}/>
                       <label htmlFor="title">Title</label>
                     </div>
                     <div className="form-floating mb-3">
-                      <textarea className="form-control"  id="enotes" name="enotes"style={{height: "80px"}} onChange={onChangeee}></textarea>
+                      <textarea className="form-control"  id="enotes" name="enotes"style={{height: "80px"}} value={nn.notes} onChange={onChangeee}></textarea>
                       <label htmlFor="notes">Your Notes here</label>
                     </div>
                     <div className="form-floating mb-3">
-                      <input type="text" className="form-control" id="etag" name="etag" onChange={onChangeee}/>
+                      <input type="text" className="form-control" id="etag" name="etag" value={nn.tag} onChange={onChangeee}/>
                       <label htmlFor="tag">Tag for your note</label>
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={submittt}>Add Note</button>
