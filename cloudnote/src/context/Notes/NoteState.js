@@ -78,7 +78,7 @@ const NoteState = (props)=>{
         console.log(id)
         setNotes(notee.filter((allNotes)=>{return allNotes._id!==id}))
       }
-      const editNote=(id,title,notes,tag)=>{
+      const editNote=async(id,title,notes,tag)=>{
         for (let index = 0; index < allNotes.length; index++) {
           const element = allNotes[index];
           if(element._id===id){
@@ -87,6 +87,17 @@ const NoteState = (props)=>{
             element.tag=tag;
           }
         }
+
+        const response = await fetch(`${host}/notes/updatenote/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I",
+          },
+          body : JSON.stringify({title,notes,tag})
+        });
+        const res = await response.json();
+        console.log("Note updated")
       }
 
     return(
