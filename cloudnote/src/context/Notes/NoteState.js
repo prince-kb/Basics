@@ -78,13 +78,19 @@ const NoteState = (props)=>{
         console.log(id)
         setNotes(notee.filter((allNotes)=>{return allNotes._id!==id}))
       }
+
       const editNote=async(id,title,notes,tag)=>{
-        for (let index = 0; index < allNotes.length; index++) {
-          const element = allNotes[index];
+
+        let newNotes = JSON.parse(JSON.stringify(notee))
+
+
+        for (let index = 0; index < newNotes.length; index++) {
+          const element = newNotes[index];
           if(element._id===id){
-            element.title=title;
-            element.notes=notes;
-            element.tag=tag;
+            newNotes[index].title=title;
+            newNotes[index].notes=notes;
+            newNotes[index].tag=tag;
+            break;
           }
         }
 
@@ -97,6 +103,7 @@ const NoteState = (props)=>{
           body : JSON.stringify({title,notes,tag})
         });
         const res = await response.json();
+        console.log(res);
         console.log("Note updated")
       }
 

@@ -6,7 +6,7 @@ import React from "react";
 import NoteItem from "./NoteItem";
 function Notes() {
   const [n,setN]=useState({title : "" ,notes : "", tag : ""})
-  const [nn,setNn]=useState({id : "" ,title : "tttttt",notes : "", tag : ""})
+  const [nn,setNn]=useState({etitle : "tttttt",enotes : "", etag : ""})
   const note = useContext(NoteContext);
   const { notee,addNote,editNote} = note;
 
@@ -19,19 +19,22 @@ function Notes() {
     addNote(n.title,n.notes,n.tag);
     // setN({title : "",notes : "", tag : "",[e.target.name] : e.target.value})
   }
-  const onChangeee=(e)=>{
-    setNn({...nn,[e.target.name] : e.target.value})
-    
+  const onChangeee=(x)=>{
+    setNn({etitle : x.title,enotes : x.notes,etag : x.tag})
+    console.log(nn)
+    console.log("onchange")
   }
   const submittt=(e)=>{
-    e.preventDefault();
-    setNn({...nn,[e.target.name] : e.target.value})
+    // e.preventDefault();
+    // setNn({...nn,[e.target.name] : e.target.value})
+    console.log(nn)
     console.log("Updating")
   }
   
   const updateNote=(e)=>{
     ref.current.click()
-    setNn({id : e.user,title : e.title,notes : e.notes,tag : e.tag})
+    setNn(e)
+    console.log("updatenote")
   }
   const ref = useRef(null)
 
