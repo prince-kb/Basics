@@ -82,8 +82,6 @@ const NoteState = (props)=>{
       const editNote=async(id,title,notes,tag)=>{
 
         let newNotes = JSON.parse(JSON.stringify(notee))
-
-
         for (let index = 0; index < newNotes.length; index++) {
           const element = newNotes[index];
           if(element._id===id){
