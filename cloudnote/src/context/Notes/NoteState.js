@@ -4,9 +4,9 @@ import NoteContext from "./NoteContext";
 const NoteState = (props)=>{
   //Since we are using host:5000 for backend, we will need the same and not host:3000 which is for our frontend
     const host = "http://localhost:5000"
-    useEffect(() => {
-      fetchmyNotes();
-    }, [])
+    // useEffect(() => {
+    //   fetchmyNotes();
+    // }, [])
 
     const allNotes = [
         {
@@ -30,6 +30,7 @@ const NoteState = (props)=>{
               "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
             }
           });
+          console.log(response)
         }
           catch(error){
             console.log("Error occured",error)
