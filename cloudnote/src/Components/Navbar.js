@@ -36,10 +36,15 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <form className="d-flex" role="search">
+          <form className="mx-4 d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
+        <button className="btn btn-outline-primary" type="submit">Search</button>
       </form>
+
+        <ul className="navbar-nav">
+        <li><Link to="login"><button type="button" className="mx-1 btn btn-outline-success">Login</button></Link></li>
+        <li><Link to="signup"><button type="button" className="mx-1 btn btn-outline-secondary">Signup</button></Link></li>
+        </ul>
         </div>
       </nav>
     </>

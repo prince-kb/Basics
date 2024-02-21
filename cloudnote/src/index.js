@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
+import AllNotes from './Components/AllNotes';
 import Home from './Components/Home';
 import About from './Components/About';
 import Contact from './Components/Contact';
-import AllNotes from './Components/AllNotes';
 import './index.css';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
@@ -30,7 +32,15 @@ const router = createBrowserRouter([
       {
         path : "mynotes",
         element : <AllNotes/>
-      }
+      },
+      {
+        path : "login",
+        element : <Login/>
+      },
+      {
+        path : "signup",
+        element : <Signup/>
+      },
     ]
   }
 ])

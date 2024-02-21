@@ -22,16 +22,18 @@ const NoteState = (props)=>{
 
       const [notee, setNotes] = useState(allNotes)
       const fetchmyNotes=async()=>{
-          const response = await fetch(`${host}/notes/fetchnotes`, {
+            try{          
+            const response = await fetch(`${host}/notes/fetchnotes`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
             }
           });
-          const rest = await response.json();
-          console.log("Notes fetched")
-          setNotes(rest);
+        }
+          catch(error){
+            console.log("Error occured",error)
+          }
         }
         
       //API calling for addnote functionality to mongodb
@@ -45,23 +47,13 @@ const NoteState = (props)=>{
             },
             body: JSON.stringify({title,notes,tag}),
           });
-          const rest = await response.json();
-          console.log(rest)
+          const res = await response.json();
+          setNotes(notee.concat(res));
+          console.log("Note Added")
         }
         catch(err){
           console.log(err)
         }
-        console.log(title,notes,tag)
-        let n = {
-          "_id": "65abef6b8e54e600d684fc17",
-          "user": "65abef3f8e54e600d684fc12",
-          "title": title,
-          "notes": notes,
-          "tag": tag,
-          "date": new Date(),
-          "__v": 0
-        }
-        setNotes(notee.concat(n));
       }
 
       const deleteNote=async(id)=>{
@@ -73,14 +65,13 @@ const NoteState = (props)=>{
           }
         });
         const res = await response.json();
-        console.log("Note deleted")
-        console.log(res)
-        console.log(id)
+        console.log("Note deleted",res)
         setNotes(notee.filter((allNotes)=>{return allNotes._id!==id}))
       }
 
       const editNote=async(id,title,notes,tag)=>{
 
+        try{
         let newNotes = JSON.parse(JSON.stringify(notee))
         for (let index = 0; index < newNotes.length; index++) {
           const element = newNotes[index];
@@ -90,6 +81,7 @@ const NoteState = (props)=>{
             newNotes[index].tag=tag;
             break;
           }
+          setNotes(newNotes)
         }
 
         const response = await fetch(`${host}/notes/updatenote/${id}`, {
@@ -100,9 +92,11 @@ const NoteState = (props)=>{
           },
           body : JSON.stringify({title,notes,tag})
         });
-        const res = await response.json();
-        console.log(res);
-        console.log("Note updated")
+        console.log("Note updated" , response)
+      }
+        catch(err){
+          console.log("Error")
+        }
       }
 
     return(
