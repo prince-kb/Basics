@@ -4,9 +4,9 @@ import NoteContext from "./NoteContext";
 const NoteState = (props)=>{
   //Since we are using host:5000 for backend, we will need the same and not host:3000 which is for our frontend
     const host = "http://localhost:5000"
-    // useEffect(() => {
-    //   fetchmyNotes();
-    // }, [])
+    useEffect(() => {
+      fetchmyNotes();
+    }, [])
 
     const allNotes = [
         {

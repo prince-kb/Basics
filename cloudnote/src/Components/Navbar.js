@@ -40,11 +40,16 @@ function Navbar() {
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button className="btn btn-outline-primary" type="submit">Search</button>
       </form>
-
-        <ul className="navbar-nav">
-        <li><Link to="login"><button type="button" className="mx-1 btn btn-outline-success">Login</button></Link></li>
-        <li><Link to="signup"><button type="button" className="mx-1 btn btn-outline-secondary">Signup</button></Link></li>
-        </ul>
+          <button
+            className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+            <div className="collapse navbar-collapse" id="navbarNav2">
+            <ul className="navbar-nav">
+            <li><Link to="login"className="mx-1 btn btn-outline-success">Login</Link></li>
+            <li><Link to="signup" className="mx-1 btn btn-outline-secondary">Signup</Link></li>
+            </ul>
+          </div>
         </div>
       </nav>
     </>
