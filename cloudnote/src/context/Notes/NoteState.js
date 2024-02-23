@@ -30,7 +30,7 @@ const NoteState = (props)=>{
               "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
             }
           });
-          console.log(response)
+          if(response){}
         }
           catch(error){
             console.log("Error occured",error)

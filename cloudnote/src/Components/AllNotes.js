@@ -116,10 +116,10 @@ function Notes() {
           </div>
 
                 {/*         Each note from NoteItem*/}        
-      {/* <div className="d-flex justify-content-center">
+       <div className="d-flex justify-content-center">
         <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#ww" aria-expanded="false" aria-controls="ww">
           Show my notes
-        </button> */}
+        </button>
         <div style={{minHeight: "120px"}}>
           <div className="collapse collapse-horizontal" id="ww">
             <div className="card card-body" style={{width: "80vw"}}>
@@ -134,8 +134,7 @@ function Notes() {
         </div>
 
         </div>
-{/* 
-      </div> */}
+      </div>
     </>
   );
 }

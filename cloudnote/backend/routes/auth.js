@@ -20,6 +20,7 @@ const bcryptjs = require("bcryptjs");
 //Using jsonwebtoken to simplify login process and not dealing with security
 //It basically generates a token for signing in and has three parts - Header,payload and signature
 var jwt = require("jsonwebtoken");
+const { Children } = require("react");
 const jwwwtoken = "hiiieyo";
 
 //To add data (here we are adding login information) 'post' is used majorly
@@ -108,36 +109,46 @@ router.post(
     let success = false;
     const result = validationResult(req);
     if (!result.isEmpty()) {
+      // console.log("Invalid email or password")
       res.send({ errors: "Invalid email or password" });
     }
     const { email, password } = req.body;
+    console.log(email,password)
+    console.log("hhh1")
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({ success: success,error: "Invalid credentials" });
+        // console.log("Invalid credentials user")
+        return res.status(400).json("Invalid credentials" );
       }
-      console.log(user.email,user.password)
       //Comparison password provided during login and password stored using hash table
-      const passComparison = await bcryptjs.compare(password, user.password);
+      const pppp = password.toString();
+      console.log("hhh2")
+      const passComparison = await bcryptjs.compare(pppp, user.password)
+
+      console.log("hhh3")
       if (!passComparison) {
-        return res.status(400).json({ success: success,error: "Invalid credentials" });
+          console.log("hhh4")
+        return res.status(400).json("Invalid credentials" );
       }
-      console.log("Good2")
       //Returning id as json because retrieval of data from id is faster
+      console.log("hhh3")
       const data = {
         user: {
           id: user.id,
         },
       };
-      success=true;
+      // console.log(data);
+      console.log("hhh4")
       const authToken = jwt.sign(data, jwwwtoken);
-      console.log("Good4")
-      res.json({success,authToken});
-      console.log("Good5")
+      success=true;
+          res.json({success,authToken});
+
     } catch (error) {
+      // console.log(error)
       return res.status(500).json({
           success: success,
-          error: "Some error occured from our side",
+          error: error,
           message: "We are trying to fix it",
         });
     }
