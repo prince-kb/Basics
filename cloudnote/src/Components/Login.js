@@ -23,7 +23,6 @@ const Login = () => {
             if(res.success){
               succ=true;
             }
-            console.log(succ)
         }
         catch(err){
             console.log(err)

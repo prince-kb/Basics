@@ -109,46 +109,37 @@ router.post(
     let success = false;
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      // console.log("Invalid email or password")
-      res.send({ errors: "Invalid email or password" });
+      res.send({ success,error: "Invalid email or password" });
     }
     const { email, password } = req.body;
     console.log(email,password)
-    console.log("hhh1")
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        // console.log("Invalid credentials user")
-        return res.status(400).json("Invalid credentials" );
+        return res.status(400).json({success,error : "Invalid credentials" });
       }
       //Comparison password provided during login and password stored using hash table
+      //Since passed password is not string
       const pppp = password.toString();
-      console.log("hhh2")
       const passComparison = await bcryptjs.compare(pppp, user.password)
 
-      console.log("hhh3")
       if (!passComparison) {
-          console.log("hhh4")
-        return res.status(400).json("Invalid credentials" );
+        return res.status(400).json({success,error:"Invalid credentials"} );
       }
       //Returning id as json because retrieval of data from id is faster
-      console.log("hhh3")
       const data = {
         user: {
           id: user.id,
         },
       };
-      // console.log(data);
-      console.log("hhh4")
       const authToken = jwt.sign(data, jwwwtoken);
       success=true;
           res.json({success,authToken});
 
     } catch (error) {
-      // console.log(error)
       return res.status(500).json({
           success: success,
-          error: error,
+          error: "Some error occured from our side",
           message: "We are trying to fix it",
         });
     }
