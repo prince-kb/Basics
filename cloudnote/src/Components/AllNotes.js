@@ -11,7 +11,7 @@ function Notes() {
   const [n,setN]=useState({title : "" ,notes : "", tag : ""})
   const [nn,setNn]=useState({id : "",etitle : "",enotes : "", etag : ""})
   const note = useContext(NoteContext);
-  const { notee,addNote,editNote} = note;
+  const { notee,addNote,editNote,success} = note;
 
 
   const onChange=(e)=>{
@@ -126,7 +126,7 @@ function Notes() {
             <div className="row">
                 <h2 className="h2 d-flex justify-content-center"> <b>AllNotes</b> </h2>
                 {notee.map((note) => {
-                  return <NoteItem note={note} updateNote={updateNote} key={note.date} />;
+                  return success && <NoteItem note={note} updateNote={updateNote} key={note.date} />;
                 })}
               </div>    
             </div>

@@ -8,6 +8,8 @@ const NoteState = (props)=>{
       fetchmyNotes();
     }, [])
 
+    const [success,setSuccess]=useState(false);
+
     const allNotes = [
         {
           "_id": "fakeid1",
@@ -30,7 +32,10 @@ const NoteState = (props)=>{
               "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
             }
           });
-          if(response){}
+          if(response){
+            const n = await response.json();
+            setNotes(n);
+          }
         }
           catch(error){
             console.log("Error occured",error)
@@ -102,7 +107,7 @@ const NoteState = (props)=>{
 
     return(
         /* Sending first and update as props to the NoteContext.Provider function so that it will also be passed to all the childrens */
-        <NoteContext.Provider value={{notee,setNotes,addNote,deleteNote,editNote,fetchmyNotes}}>
+        <NoteContext.Provider value={{notee,setNotes,addNote,deleteNote,editNote,fetchmyNotes,success,setSuccess}}>
         {props.children}
         </NoteContext.Provider>
      )}

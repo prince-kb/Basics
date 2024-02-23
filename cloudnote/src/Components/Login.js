@@ -1,12 +1,15 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
+import NoteContext from '../context/Notes/NoteContext';
+// import { BrowserHistory } from 'react-router-dom';
 const host = "http://localhost:5000"
-let succ=false;
+// let history = BrowserHistory();
 const Login = () => {
     const [ credentials,setCredentials]=useState({email : "", password : 0})
     const onChange=(e)=>{
       setCredentials({...credentials,[e.target.name] : [e.target.value]})
     }
-
+    const p = useContext(NoteContext);
+    const {setSuccess}=p;
     const onSubmit=async(e)=>{
         e.preventDefault()
         try{
@@ -19,9 +22,10 @@ const Login = () => {
             });
             console.log(credentials.email,credentials.password)
             const res = await response.json();
-            console.log(succ)
             if(res.success){
-              succ=true;
+              localStorage.setItem('token',response.authtoken);
+              // history.push('/');
+              setSuccess(true);
             }
         }
         catch(err){

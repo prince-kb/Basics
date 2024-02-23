@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useContext } from "react";
 import { Link,useLocation} from "react-router-dom";
+import NoteContext from "../context/Notes/NoteContext";
 function Navbar() {
   let location = useLocation();
   useEffect(()=>{
     // console.log(location.pathname)
   })
+  const p = useContext(NoteContext);
+  const{success}=p;
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -40,7 +43,7 @@ function Navbar() {
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button className="btn btn-outline-primary" type="submit">Search</button>
       </form>
-          <button
+          {!success && <div><button
             className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -50,6 +53,8 @@ function Navbar() {
             <li><Link to="signup" className="mx-1 btn btn-outline-secondary">Signup</Link></li>
             </ul>
           </div>
+          </div>
+          }
         </div>
       </nav>
     </>
