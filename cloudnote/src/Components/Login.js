@@ -1,15 +1,18 @@
 import React,{useState,useContext} from 'react'
 import NoteContext from '../context/Notes/NoteContext';
-// import { BrowserHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const host = "http://localhost:5000"
-// let history = BrowserHistory();
+
+
 const Login = () => {
-    const [ credentials,setCredentials]=useState({email : "", password : 0})
+    const [ credentials,setCredentials]=useState({email : "", password : ""})
     const onChange=(e)=>{
       setCredentials({...credentials,[e.target.name] : [e.target.value]})
     }
+    const navigate=useNavigate();
     const p = useContext(NoteContext);
-    const {setSuccess}=p;
+    const {setSuccess,fetchmyNotes}=p;
+  
     const onSubmit=async(e)=>{
         e.preventDefault()
         try{
@@ -20,12 +23,12 @@ const Login = () => {
               },
               body: JSON.stringify(credentials),
             });
-            console.log(credentials.email,credentials.password)
             const res = await response.json();
             if(res.success){
               localStorage.setItem('token',response.authtoken);
-              // history.push('/');
+              navigate("/");
               setSuccess(true);
+              fetchmyNotes();
             }
         }
         catch(err){

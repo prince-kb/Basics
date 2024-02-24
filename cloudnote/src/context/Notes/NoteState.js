@@ -1,20 +1,20 @@
-import { useState,useEffect } from "react";
+import { useState} from "react";
 import NoteContext from "./NoteContext";
 
 const NoteState = (props)=>{
   //Since we are using host:5000 for backend, we will need the same and not host:3000 which is for our frontend
     const host = "http://localhost:5000"
-    useEffect(() => {
-      fetchmyNotes();
-    }, [])
+    // useEffect(() => {
+    //   fetchmyNotes();
+    // }, [])
 
     const [success,setSuccess]=useState(false);
 
     const allNotes = [
         {
           "_id": "fakeid1",
-          "user": "65abef3f8e54e600d684fc12",
-          "title": "My first noteeee",
+          "user": "none",
+          "title": "Login to see your notes",
           "notes": "Example noteeee",
           "tag": "default",
           "date": new Date(),
@@ -34,7 +34,7 @@ const NoteState = (props)=>{
           });
           if(response){
             const n = await response.json();
-            setNotes(n);
+            success && setNotes(n);
           }
         }
           catch(error){

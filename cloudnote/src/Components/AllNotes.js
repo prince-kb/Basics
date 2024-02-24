@@ -11,12 +11,14 @@ function Notes() {
   const [n,setN]=useState({title : "" ,notes : "", tag : ""})
   const [nn,setNn]=useState({id : "",etitle : "",enotes : "", etag : ""})
   const note = useContext(NoteContext);
-  const { notee,addNote,editNote,success} = note;
+  const { notee,addNote,editNote,success,fetchmyNotes} = note;
+
 
 
   const onChange=(e)=>{
     setN({...n,[e.target.name] : e.target.value})
   }
+
   const submit=(e)=>{
     e.preventDefault();
     setN({...n,[e.target.name] : e.target.value})
@@ -48,6 +50,7 @@ function Notes() {
     }
     //To close the modale when trying to save the editnote
     refClose.current.click()
+
   }
   
 
@@ -56,6 +59,7 @@ function Notes() {
 
       {/* Adding Note */}
       <div className="my-3">
+        {success && <div>
         <h2 className="h2 container">Please fill the notes form</h2>
         <form className="container mb-3">
         <div className="form-floating mb-3">
@@ -72,6 +76,8 @@ function Notes() {
           </div>
           <button type="submit" disabled={n.title.length<1 || n.notes.length<3} className="btn btn-primary" onClick={submit}>Add Note</button>
         </form>
+        </div>
+        }
 
         {/* Edit Note Modal */}
             <div className="d-flex justify-content-center my-3">
@@ -116,8 +122,8 @@ function Notes() {
           </div>
 
                 {/*         Each note from NoteItem*/}        
-       <div className="d-flex justify-content-center">
-        <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#ww" aria-expanded="false" aria-controls="ww">
+       { success ? <div className="d-flex justify-content-center">
+        <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#ww" aria-expanded="false" aria-controls="ww" onClick={fetchmyNotes}>
           Show my notes
         </button>
         <div style={{minHeight: "120px"}}>
@@ -125,15 +131,16 @@ function Notes() {
             <div className="card card-body" style={{width: "80vw"}}>
             <div className="row">
                 <h2 className="h2 d-flex justify-content-center"> <b>AllNotes</b> </h2>
+                {/* <button className="btn btn-secondary" onClick={fetchmyNotes}>Refresh</button> */}
                 {notee.map((note) => {
-                  return success && <NoteItem note={note} updateNote={updateNote} key={note.date} />;
+                  return <NoteItem note={note} updateNote={updateNote} key={note.date} />;
                 })}
               </div>    
             </div>
           </div>
         </div>
 
-        </div>
+        </div> : <h2 className="container h2">Login to see your notes</h2> }
       </div>
     </>
   );

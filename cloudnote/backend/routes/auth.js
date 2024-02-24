@@ -44,8 +44,9 @@ router.post(
     //Both bcryptjs lines return a promise, so we need to add await
     //Salt will add additional strings to be generated to the hash table
     const salt = await bcryptjs.genSalt(10);
+    const p = req.body.password.toString();
     //This will generate a hash table for my password so that if my database is stolen, password cannot be retrieved or cannot be matched using a rainbow table
-    const securePassword = await bcryptjs.hash(req.body.password, salt);
+    const securePassword = await bcryptjs.hash(p, salt);
     //User is a schema defined in another js file
 
     /* const u = User(req.body);
@@ -84,6 +85,7 @@ router.post(
       //This line will return the user as response
       // res.send("Added user : " + req.body.name)
       res.json(authToken);
+      console.log(authToken,data);
     } catch (error) {
       console.log(error);
       return res.status(500).json({
@@ -112,7 +114,6 @@ router.post(
       res.send({ success,error: "Invalid email or password" });
     }
     const { email, password } = req.body;
-    console.log(email,password)
     try {
       let user = await User.findOne({ email });
       if (!user) {
