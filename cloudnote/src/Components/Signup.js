@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react'
 import NoteContext from '../context/Notes/NoteContext'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
+  
   const host = "http://localhost:5000"
+  const navigate = useNavigate();
   const [credentials,setCredentials]=useState({name : "",email : "",pass : ""})
   const p = useContext(NoteContext);
   const {fetchmyNotes,setSuccess}=p;
@@ -21,7 +24,14 @@ const Signup = () => {
           body: JSON.stringify({name : name,email : email,password : pass,description : "none"}),
         });
         const res = await response.json();
-        console.log("User Added")
+        if(res.success){
+          localStorage.setItem('token',response.authtoken);
+          // navigate("/");
+          // setSuccess(true);
+          // fetchmyNotes();
+          console.log("User Added")
+          // loginNow();
+        }
         console.log(res)
       }
       catch(err){
@@ -29,26 +39,34 @@ const Signup = () => {
       }
  
       console.log(email,pass);
-      try{
-        const response = await fetch(`${host}/auth/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({email,pass}),
-        });
-        const res = await response.json();
-        if(res.success){
-          localStorage.setItem('token',response.authtoken);
-          // navigate("/");
-          setSuccess(true);
-          fetchmyNotes();
-        }
-    }
-    catch(err){
-        console.log(err)
-      }
   }
+
+  const loginNow=async ()=>{
+    const [email,password] = [credentials.email,credentials.pass]
+    console.log(email,password)
+  //   try{
+  //     const response = await fetch(`${host}/auth/login`, {
+
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({email : credentials.email,password : credentials.pass}),
+  //     });
+  //     const res = await response.json();
+  //     if(res.success){
+  //       localStorage.setItem('token',response.authtoken);
+  //       console.log("Login success")
+  //       navigate("/");
+  //       setSuccess(true);
+  //       fetchmyNotes();
+  //     }
+  // }
+  // catch(err){
+  //     console.log(err)
+  //   }
+  }
+
   return (
     <div className='container'>
       <form onSubmit={Submit}>

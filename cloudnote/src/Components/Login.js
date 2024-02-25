@@ -1,16 +1,16 @@
 import React,{useState,useContext} from 'react'
 import NoteContext from '../context/Notes/NoteContext';
 import { useNavigate } from 'react-router-dom';
-const host = "http://localhost:5000"
 
 
 const Login = () => {
+  const host = "http://localhost:5000"
+  const navigate=useNavigate();
+  const p = useContext(NoteContext);
     const [ credentials,setCredentials]=useState({email : "", password : ""})
     const onChange=(e)=>{
       setCredentials({...credentials,[e.target.name] : [e.target.value]})
     }
-    const navigate=useNavigate();
-    const p = useContext(NoteContext);
     const {setSuccess,fetchmyNotes}=p;
   
     const onSubmit=async(e)=>{

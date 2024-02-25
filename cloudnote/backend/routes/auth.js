@@ -36,59 +36,60 @@ router.post(
     }),
   ],
   async (req, res) => {
+    let success = false;
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      res.send({ errors: result.array() });
+      res.send({ success : success,errors: result.array() });
     }
 
     //Both bcryptjs lines return a promise, so we need to add await
     //Salt will add additional strings to be generated to the hash table
     const salt = await bcryptjs.genSalt(10);
     const p = req.body.password.toString();
+
+    console.log(p,req.body.email)
     //This will generate a hash table for my password so that if my database is stolen, password cannot be retrieved or cannot be matched using a rainbow table
     const securePassword = await bcryptjs.hash(p, salt);
-    //User is a schema defined in another js file
 
-    /* const u = User(req.body);
-        u.save();
-        return res.send(`Hello, ${req.body.name}!, your schema is added`); 
-        */
-    //OR
     try {
       //This line should must be declared await
-      let user = await User.findOne({ email: req.body.email });
+      let user = await User.findOne({email: req.body.email });
       if (user) {
         //We cannot tell users that this email already exist as this will help attackers in some way
         //Instead we will just response by some error occured
         return res
           .status(400)
           .json({
+            success : success,
             error: "Invalid credentials",
             message: "Try using another email",
           });
       }
+      //User is a schema defined in another js file
       //user is a variable and it will be send as response to save the data
-      user = User.create({
+      user = await User.create({
         name: req.body.name,
         email: req.body.email,
         password: securePassword,
         description: req.body.description,
       });
+      console.log(user);
       const data = {
         user: {
           id: user.id,
         },
       };
       const authToken = jwt.sign(data, jwwwtoken);
+      success=true;
       console.log(req.body.name + " added");
 
       //This line will return the user as response
       // res.send("Added user : " + req.body.name)
-      res.json(authToken);
-      console.log(authToken,data);
+      res.json({success,authToken,data});
     } catch (error) {
       console.log(error);
       return res.status(500).json({
+          success : success,
           error: "Some error occured from our side",
           message: "We are trying to fix it",
         });
@@ -114,18 +115,20 @@ router.post(
       res.send({ success,error: "Invalid email or password" });
     }
     const { email, password } = req.body;
+          //Since passed password is not string
+          const pppp = password.toString();
+          console.log(email,password)
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({success,error : "Invalid credentials" });
+        return res.status(400).json({success : success,error : "Invalid credentials" });
       }
+
       //Comparison password provided during login and password stored using hash table
-      //Since passed password is not string
-      const pppp = password.toString();
       const passComparison = await bcryptjs.compare(pppp, user.password)
 
       if (!passComparison) {
-        return res.status(400).json({success,error:"Invalid credentials"} );
+        return res.status(400).json({success : success,error:"Invalid credentials"} );
       }
       //Returning id as json because retrieval of data from id is faster
       const data = {
@@ -133,9 +136,9 @@ router.post(
           id: user.id,
         },
       };
-      const authToken = jwt.sign(data, jwwwtoken);
-      success=true;
-          res.json({success,authToken});
+        const authToken = jwt.sign(data, jwwwtoken);
+        success=true;
+        res.json({success,authToken});
 
     } catch (error) {
       return res.status(500).json({
