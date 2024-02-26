@@ -11,7 +11,7 @@ const Login = () => {
     const onChange=(e)=>{
       setCredentials({...credentials,[e.target.name] : [e.target.value]})
     }
-    const {setSuccess,fetchmyNotes,success}=p;
+    const {fetchmyNotes}=p;
     
     const onSubmit=async(e)=>{
         e.preventDefault()
@@ -25,11 +25,9 @@ const Login = () => {
             });
             const res = await response.json();
             if(res.success){
-              setSuccess(true);
-              console.log(success)
-              localStorage.setItem('token',response.authtoken);
+              localStorage.setItem('token',res.authToken);
               navigate("/");
-              fetchmyNotes();
+              // fetchmyNotes();
             }
         }
         catch(err){
@@ -41,11 +39,11 @@ const Login = () => {
     <form className='container' onSubmit={onSubmit}>
         <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
-            <input type="email" className="form-control" id="email" name="email" value={credentials.email} onChange={onChange}/>
+            <input type="email" className="form-control" id="email" name="email" value={credentials.email} onChange={onChange} required/>
         </div>
         <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control" id="password" name="password" value={credentials.password} onChange={onChange}/>
+            <input type="password" className="form-control" id="password" name="password" value={credentials.password} onChange={onChange} required/>
         </div>
         <button type="submit" className="btn btn-primary" >Submit</button>
         </form>

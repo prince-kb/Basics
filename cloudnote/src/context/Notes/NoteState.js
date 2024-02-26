@@ -8,8 +8,6 @@ const NoteState = (props)=>{
     //   fetchmyNotes();
     // }, [])
 
-    const [success,setSuccess]=useState(false);
-
     const allNotes = [
         {
           "_id": "fakeid1",
@@ -29,12 +27,12 @@ const NoteState = (props)=>{
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVkYjUyMmMyMWVjNzk0NzEwMDRkZWNiIn0sImlhdCI6MTcwODg3MjIzNn0.MZ447eB84KWF4AWIiVaUypQOOMF04wo567Ct9y-paxM.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
+              "auth-token" : localStorage.getItem('token')
             }
           });
           if(response){
             const n = await response.json();
-            success && setNotes(n);
+            localStorage.getItem('token') && setNotes(n);
           }
         }
           catch(error){
@@ -49,7 +47,7 @@ const NoteState = (props)=>{
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
+              "auth-token" : localStorage.getItem('token')
             },
             body: JSON.stringify({title,notes,tag}),
           });
@@ -67,7 +65,7 @@ const NoteState = (props)=>{
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
+            "auth-token" : localStorage.getItem('token')
           }
         });
         const res = await response.json();
@@ -94,7 +92,7 @@ const NoteState = (props)=>{
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I",
+            "auth-token" : localStorage.getItem('token'),
           },
           body : JSON.stringify({title,notes,tag})
         });
@@ -107,7 +105,7 @@ const NoteState = (props)=>{
 
     return(
         /* Sending first and update as props to the NoteContext.Provider function so that it will also be passed to all the childrens */
-        <NoteContext.Provider value={{notee,setNotes,addNote,deleteNote,editNote,fetchmyNotes,success,setSuccess}}>
+        <NoteContext.Provider value={{notee,setNotes,addNote,deleteNote,editNote,fetchmyNotes}}>
         {props.children}
         </NoteContext.Provider>
      )}

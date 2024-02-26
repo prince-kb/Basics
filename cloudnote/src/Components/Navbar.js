@@ -1,14 +1,14 @@
-import React, { useEffect,useContext } from "react";
+import React, { useEffect} from "react";
 import { Link,useLocation} from "react-router-dom";
-import NoteContext from "../context/Notes/NoteContext";
 function Navbar() {
   let location = useLocation();
   useEffect(()=>{
     // console.log(location.pathname)
   })
-  const p = useContext(NoteContext);
-  const{success}=p;
-  return (
+  const handleLogout=()=>{
+    localStorage.removeItem('token')
+  }
+    return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
@@ -43,18 +43,16 @@ function Navbar() {
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button className="btn btn-outline-primary" type="submit">Search</button>
       </form>
-          {!success && <div><button
-            className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-            <div className="collapse navbar-collapse" id="navbarNav2">
+          {/* {!localStorage.getItem('token') ? */}
+           <div>
             <ul className="navbar-nav">
             <li><Link to="login"className="mx-1 btn btn-outline-success">Login</Link></li>
             <li><Link to="signup" className="mx-1 btn btn-outline-secondary">Signup</Link></li>
+            <button className="btn btn-primary" onClick={handleLogout}>LOGOUT</button>
             </ul>
-          </div>
-          </div>
-          }
+          </div> 
+           {/* : <h2 className="h2">None</h2>
+           } */}
         </div>
       </nav>
     </>

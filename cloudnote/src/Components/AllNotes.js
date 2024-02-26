@@ -11,7 +11,7 @@ function Notes() {
   const [n,setN]=useState({title : "" ,notes : "", tag : ""})
   const [nn,setNn]=useState({id : "",etitle : "",enotes : "", etag : ""})
   const note = useContext(NoteContext);
-  const { notee,addNote,editNote,success,fetchmyNotes} = note;
+  const { notee,addNote,editNote,fetchmyNotes} = note;
 
   const onChange=(e)=>{
     setN({...n,[e.target.name] : e.target.value})
@@ -57,7 +57,7 @@ function Notes() {
 
       {/* Adding Note */}
       <div className="my-3">
-        {success && <div>
+        {localStorage.getItem('token') && <div>
         <h2 className="h2 container">Please fill the notes form</h2>
         <form className="container mb-3">
         <div className="form-floating mb-3">
@@ -120,7 +120,7 @@ function Notes() {
           </div>
 
                 {/*         Each note from NoteItem*/}        
-       { success ? <div className="d-flex justify-content-center">
+       { localStorage.getItem('token') ? <div className="d-flex justify-content-center">
         <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#ww" aria-expanded="false" aria-controls="ww" onClick={fetchmyNotes}>
           Show my notes
         </button>
@@ -130,7 +130,7 @@ function Notes() {
             <div className="row">
                 <h2 className="h2 d-flex justify-content-center"> <b>AllNotes</b> </h2>
                 {/* <button className="btn btn-secondary" onClick={fetchmyNotes}>Refresh</button> */}
-                {notee ? notee.map((note) => {
+                {localStorage.getItem('token') ? notee.map((note) => {
                   return <NoteItem note={note} updateNote={updateNote} key={note.date} />;
                 } ): <h2 className="h2">No notes available</h2>} 
               </div>    

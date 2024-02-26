@@ -8,7 +8,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const [credentials,setCredentials]=useState({name : "",email : "",pass : ""})
   const p = useContext(NoteContext);
-  const {fetchmyNotes,success,setSuccess}=p;
+  const {fetchmyNotes}=p;
   const Change=(e)=>{
     setCredentials({...credentials,[e.target.name]:[e.target.value]});
   }
@@ -31,45 +31,17 @@ const Signup = () => {
         console.log(res)
         
         if(res.success){
-          localStorage.setItem('token',response.authtoken);
+          localStorage.setItem('token',res.authToken);
           navigate("/");
-          setSuccess(true);
-          fetchmyNotes();
+          // fetchmyNotes();
           console.log("User Added")
         }
-          // loginNow();
       }
       catch(err){
         console.log(err)
       }
  
       console.log(email,pass);
-  }
-
-  const loginNow=async ()=>{
-    const [email,password] = [credentials.email,credentials.pass]
-    console.log(email,password)
-  //   try{
-  //     const response = await fetch(`${host}/auth/login`, {
-
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({email : credentials.email,password : credentials.pass}),
-  //     });
-  //     const res = await response.json();
-  //     if(res.success){
-  //       localStorage.setItem('token',response.authtoken);
-  //       console.log("Login success")
-  //       navigate("/");
-  //       setSuccess(true);
-  //       fetchmyNotes();
-  //     }
-  // }
-  // catch(err){
-  //     console.log(err)
-  //   }
   }
 
   return (
@@ -85,10 +57,10 @@ const Signup = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="pass" className="form-label">Password</label>
-          <input type="password" className="form-control" id="pass" name="pass" value={credentials.pass} onChange={Change}/>
+          <input type="password" className="form-control" id="pass" name="pass" value={credentials.pass} onChange={Change} minLength={5} required/>
         </div>
         <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" id="check1"/>
+          <input type="checkbox" className="form-check-input" id="check1" required/>
           <label className="form-check-label" htmlFor="check1">I agree to terms and conditions</label>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
