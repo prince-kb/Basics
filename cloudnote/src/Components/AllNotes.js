@@ -40,7 +40,6 @@ function Notes() {
     try{
       editNote(nn.id,nn.etitle,nn.enotes,nn.etag);
       console.log("Updating notes")
-      console.log(nn)
     }
     catch(e){
       console.log("Cannot update note due to : ")

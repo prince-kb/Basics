@@ -70,7 +70,6 @@ router.post(
         password: securePassword,
         description: req.body.description,
       });
-      console.log(user);
       const data = {
         user: {
           id: user.id,
@@ -135,7 +134,6 @@ router.post(
           id: user.id,
         },
       };
-      console.log(data)
         const authToken = jwt.sign(data, jwwwtoken);
         success=true;
         res.json({success,authToken});

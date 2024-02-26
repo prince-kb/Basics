@@ -1,12 +1,17 @@
 import React, { useEffect} from "react";
-import { Link,useLocation} from "react-router-dom";
-function Navbar() {
+import { Link,useLocation, useNavigate} from "react-router-dom";
+function Navbar(props) {
+  const navigate = useNavigate();
   let location = useLocation();
   useEffect(()=>{
     // console.log(location.pathname)
   })
+  const allll=()=>{
+    props.showAlert("Hiii USEEFFECT",'success')
+  }
   const handleLogout=()=>{
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
+    navigate("/");
   }
     return (
     <>
@@ -37,22 +42,21 @@ function Navbar() {
                   Disabled
                 </Link>
               </li>
+              <button className="btn btn-dark" onClick={allll}>CM</button>
             </ul>
           </div>
           <form className="mx-4 d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button className="btn btn-outline-primary" type="submit">Search</button>
       </form>
-          {/* {!localStorage.getItem('token') ? */}
+          {!localStorage.getItem('token') ?
            <div>
             <ul className="navbar-nav">
             <li><Link to="login"className="mx-1 btn btn-outline-success">Login</Link></li>
             <li><Link to="signup" className="mx-1 btn btn-outline-secondary">Signup</Link></li>
-            <button className="btn btn-primary" onClick={handleLogout}>LOGOUT</button>
             </ul>
-          </div> 
-           {/* : <h2 className="h2">None</h2>
-           } */}
+          </div>  : <button className="btn btn-primary" onClick={handleLogout}>LOGOUT</button>
+           }
         </div>
       </nav>
     </>

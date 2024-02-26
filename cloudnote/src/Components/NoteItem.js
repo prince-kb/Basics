@@ -11,6 +11,7 @@ function NoteItem(props) {
 
   return (
     <div className="col-md-3 my-3 mx-auto">
+      {localStorage.getItem('token') ?
       <div className="card m-auto">
         <div className="card-body">
           <h2 className="card-title">{note.title}</h2>
@@ -21,7 +22,7 @@ function NoteItem(props) {
           <i className="fa-solid fa-trash mx-2" onClick={()=>{deleteNote(note._id)}} ></i>
           <i className="fa-regular fa-pen-to-square mx-2" onClick={()=>{updateNote(note)}}></i>
         </div>
-      </div>
+      </div> : <h2 className="h2">No notes available</h2> }
     </div>
   );
 }

@@ -8,6 +8,7 @@ const NoteState = (props)=>{
     //   fetchmyNotes();
     // }, [])
 
+
     const allNotes = [
         {
           "_id": "fakeid1",

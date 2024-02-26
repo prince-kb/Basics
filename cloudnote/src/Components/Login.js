@@ -1,17 +1,25 @@
-import React,{useState,useContext} from 'react'
-import NoteContext from '../context/Notes/NoteContext';
+import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
   const host = "http://localhost:5000"
   const navigate=useNavigate();
-  const p = useContext(NoteContext);
     const [ credentials,setCredentials]=useState({email : "name@gmail.com", password : "name"})
     const onChange=(e)=>{
       setCredentials({...credentials,[e.target.name] : [e.target.value]})
     }
-    const {fetchmyNotes}=p;
+
+    const showAlert=(msg,type)=>{
+
+      setAlert({
+        message : msg,
+        type : type
+      })
+      setTimeout(()=>{
+        setAlert("")
+      },2000);
+    }
     
     const onSubmit=async(e)=>{
         e.preventDefault()
@@ -26,11 +34,13 @@ const Login = () => {
             const res = await response.json();
             if(res.success){
               localStorage.setItem('token',res.authToken);
+              showAlert("Login Successful",'success')
               navigate("/");
               // fetchmyNotes();
             }
-        }
-        catch(err){
+          }
+          catch(err){
+          showAlert("Login Failed",'warning')
             console.log(err)
           }
     }

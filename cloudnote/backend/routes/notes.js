@@ -88,8 +88,7 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
     }
     else{
     await Notes.findByIdAndDelete(req.params.id);
-    console.log(currentNote);
-    res.json({ Success: "Note deleted" });
+    res.json({ success: "Note deleted" });
     }
   } catch (err) {
     console.log("Cannot find associated note id");

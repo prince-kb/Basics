@@ -1,24 +1,30 @@
-import React, { useContext, useState } from 'react'
-import NoteContext from '../context/Notes/NoteContext'
+import React, {useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = (props) => {
   
   const host = "http://localhost:5000"
   const navigate = useNavigate();
   const [credentials,setCredentials]=useState({name : "",email : "",pass : ""})
-  const p = useContext(NoteContext);
-  const {fetchmyNotes}=p;
   const Change=(e)=>{
     setCredentials({...credentials,[e.target.name]:[e.target.value]});
   }
+  const showAlert=(msg,type)=>{
+    setAlert({
+      message : msg,
+      type : type
+    })
+    setTimeout(()=>{
+      setAlert("")
+    },2000);
+  }
+  
   const Submit=async (e)=>{
     e.preventDefault();
       const {name,email,pass}=credentials;
       const nam = name.toString();
       const mail = email.toString();
       const passw=pass.toString();
-      console.log(name,mail,email,pass)
       try{
         const response = await fetch(`${host}/auth/signup`, {
           method: "POST",
@@ -28,20 +34,19 @@ const Signup = () => {
           body: JSON.stringify({name : nam,email : mail,password : passw,description : "none"}),
         });
         const res = await response.json();
-        console.log(res)
         
         if(res.success){
           localStorage.setItem('token',res.authToken);
+          showAlert("Signup success","success")
           navigate("/");
-          // fetchmyNotes();
           console.log("User Added")
         }
       }
       catch(err){
+        showAlert("Signup Failed","warning")
         console.log(err)
       }
  
-      console.log(email,pass);
   }
 
   return (
