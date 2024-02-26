@@ -7,12 +7,12 @@ const Login = () => {
   const host = "http://localhost:5000"
   const navigate=useNavigate();
   const p = useContext(NoteContext);
-    const [ credentials,setCredentials]=useState({email : "", password : ""})
+    const [ credentials,setCredentials]=useState({email : "name@gmail.com", password : "name"})
     const onChange=(e)=>{
       setCredentials({...credentials,[e.target.name] : [e.target.value]})
     }
-    const {setSuccess,fetchmyNotes}=p;
-  
+    const {setSuccess,fetchmyNotes,success}=p;
+    
     const onSubmit=async(e)=>{
         e.preventDefault()
         try{
@@ -25,9 +25,10 @@ const Login = () => {
             });
             const res = await response.json();
             if(res.success){
+              setSuccess(true);
+              console.log(success)
               localStorage.setItem('token',response.authtoken);
               navigate("/");
-              setSuccess(true);
               fetchmyNotes();
             }
         }

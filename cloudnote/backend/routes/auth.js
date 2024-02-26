@@ -20,7 +20,6 @@ const bcryptjs = require("bcryptjs");
 //Using jsonwebtoken to simplify login process and not dealing with security
 //It basically generates a token for signing in and has three parts - Header,payload and signature
 var jwt = require("jsonwebtoken");
-const { Children } = require("react");
 const jwwwtoken = "hiiieyo";
 
 //To add data (here we are adding login information) 'post' is used majorly
@@ -46,14 +45,12 @@ router.post(
     //Salt will add additional strings to be generated to the hash table
     const salt = await bcryptjs.genSalt(10);
     const p = req.body.password.toString();
-
-    console.log(p,req.body.email)
     //This will generate a hash table for my password so that if my database is stolen, password cannot be retrieved or cannot be matched using a rainbow table
     const securePassword = await bcryptjs.hash(p, salt);
 
     try {
       //This line should must be declared await
-      let user = await User.findOne({email: req.body.email });
+      let user = await User.findOne({email: req.body.password });
       if (user) {
         //We cannot tell users that this email already exist as this will help attackers in some way
         //Instead we will just response by some error occured
@@ -85,7 +82,7 @@ router.post(
 
       //This line will return the user as response
       // res.send("Added user : " + req.body.name)
-      res.json({success,authToken,data});
+      res.json({success,authToken});
     } catch (error) {
       console.log(error);
       return res.status(500).json({
@@ -121,13 +118,15 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (!user) {
+        console.log("Invalid user")
         return res.status(400).json({success : success,error : "Invalid credentials" });
       }
-
+      
       //Comparison password provided during login and password stored using hash table
       const passComparison = await bcryptjs.compare(pppp, user.password)
-
+      
       if (!passComparison) {
+        console.log("Invalid password")
         return res.status(400).json({success : success,error:"Invalid credentials"} );
       }
       //Returning id as json because retrieval of data from id is faster
@@ -136,6 +135,7 @@ router.post(
           id: user.id,
         },
       };
+      console.log(data)
         const authToken = jwt.sign(data, jwwwtoken);
         success=true;
         res.json({success,authToken});

@@ -8,31 +8,36 @@ const Signup = () => {
   const navigate = useNavigate();
   const [credentials,setCredentials]=useState({name : "",email : "",pass : ""})
   const p = useContext(NoteContext);
-  const {fetchmyNotes,setSuccess}=p;
+  const {fetchmyNotes,success,setSuccess}=p;
   const Change=(e)=>{
     setCredentials({...credentials,[e.target.name]:[e.target.value]});
   }
   const Submit=async (e)=>{
     e.preventDefault();
       const {name,email,pass}=credentials;
+      const nam = name.toString();
+      const mail = email.toString();
+      const passw=pass.toString();
+      console.log(name,mail,email,pass)
       try{
         const response = await fetch(`${host}/auth/signup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
               },
-          body: JSON.stringify({name : name,email : email,password : pass,description : "none"}),
+          body: JSON.stringify({name : nam,email : mail,password : passw,description : "none"}),
         });
         const res = await response.json();
+        console.log(res)
+        
         if(res.success){
           localStorage.setItem('token',response.authtoken);
-          // navigate("/");
-          // setSuccess(true);
-          // fetchmyNotes();
+          navigate("/");
+          setSuccess(true);
+          fetchmyNotes();
           console.log("User Added")
-          // loginNow();
         }
-        console.log(res)
+          // loginNow();
       }
       catch(err){
         console.log(err)

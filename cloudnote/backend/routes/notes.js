@@ -37,12 +37,13 @@ router.post(
 //To fetch all notes created by a individual user
 router.get("/fetchnotes", fetchuser, async (req, res) => {
   try {
+    console.log("Hii ",req.user)
     const n = await Notes.find({ user: req.user.id });
     // console.log(n);
     // console.log(req.user.id)
     res.json(n);
-  } catch {
-    return res.status(400).json({ errors: errors.array() });
+  } catch(error) {
+    return res.status(400).json({ errors: error });
   }
 });
 

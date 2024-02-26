@@ -29,7 +29,7 @@ const NoteState = (props)=>{
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
+              "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVkYjUyMmMyMWVjNzk0NzEwMDRkZWNiIn0sImlhdCI6MTcwODg3MjIzNn0.MZ447eB84KWF4AWIiVaUypQOOMF04wo567Ct9y-paxM.eyJ1c2VyIjp7ImlkIjoiNjVhYmVmM2Y4ZTU0ZTYwMGQ2ODRmYzEyIn0sImlhdCI6MTcwNTc2NjczOX0.FONOAw35avJRLG3aCvhYxQIDaoaY2YhZN2kRtM86T4I"
             }
           });
           if(response){
@@ -38,7 +38,7 @@ const NoteState = (props)=>{
           }
         }
           catch(error){
-            console.log("Error occured",error)
+            console.log("Error occured in fetching notes",error)
           }
         }
         

@@ -13,8 +13,6 @@ function Notes() {
   const note = useContext(NoteContext);
   const { notee,addNote,editNote,success,fetchmyNotes} = note;
 
-
-
   const onChange=(e)=>{
     setN({...n,[e.target.name] : e.target.value})
   }
@@ -132,9 +130,9 @@ function Notes() {
             <div className="row">
                 <h2 className="h2 d-flex justify-content-center"> <b>AllNotes</b> </h2>
                 {/* <button className="btn btn-secondary" onClick={fetchmyNotes}>Refresh</button> */}
-                {notee.map((note) => {
+                {notee ? notee.map((note) => {
                   return <NoteItem note={note} updateNote={updateNote} key={note.date} />;
-                })}
+                } ): <h2 className="h2">No notes available</h2>} 
               </div>    
             </div>
           </div>
