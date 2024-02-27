@@ -5,7 +5,7 @@ const User = require("../models/User");
 const { body, validationResult } = require("express-validator");
 
 //Middleware
-const fetchuser = require('../middleware/fetchuser')
+const fetchuser = require("../middleware/fetchuser");
 //To encrypt a password we use the following package
 const bcryptjs = require("bcryptjs");
 // router.get('/',(req,res)=>{
@@ -38,7 +38,7 @@ router.post(
     let success = false;
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      res.send({ success : success,errors: result.array() });
+      res.send({ success: success, errors: result.array() });
     }
 
     //Both bcryptjs lines return a promise, so we need to add await
@@ -50,17 +50,15 @@ router.post(
 
     try {
       //This line should must be declared await
-      let user = await User.findOne({email: req.body.password });
+      let user = await User.findOne({ email: req.body.password });
       if (user) {
         //We cannot tell users that this email already exist as this will help attackers in some way
         //Instead we will just response by some error occured
-        return res
-          .status(400)
-          .json({
-            success : success,
-            error: "Invalid credentials",
-            message: "Try using another email",
-          });
+        return res.status(400).json({
+          success: success,
+          error: "Invalid credentials",
+          message: "Try using another email",
+        });
       }
       //User is a schema defined in another js file
       //user is a variable and it will be send as response to save the data
@@ -76,19 +74,18 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, jwwwtoken);
-      success=true;
-      console.log(req.body.name + " added");
+      success = true;
 
       //This line will return the user as response
       // res.send("Added user : " + req.body.name)
-      res.json({success,authToken});
+      res.json({ success, authToken });
     } catch (error) {
       console.log(error);
       return res.status(500).json({
-          success : success,
-          error: "Some error occured from our side",
-          message: "We are trying to fix it",
-        });
+        success: success,
+        error: "Some error occured from our side",
+        message: "We are trying to fix it",
+      });
     }
     //We can also use .then and .catch if we are not using an await request
     /*         .then(user=>{res.json(user)
@@ -108,25 +105,26 @@ router.post(
     let success = false;
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      res.send({ success,error: "Invalid email or password" });
+      res.send({ success, error: "Invalid email or password" });
     }
     const { email, password } = req.body;
-          //Since passed password is not string
-          const pppp = password.toString();
-          console.log(email,password)
+    //Since passed password is not string
+    const pppp = password.toString();
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        console.log("Invalid user")
-        return res.status(400).json({success : success,error : "Invalid credentials" });
+        return res
+          .status(400)
+          .json({ success: success, error: "Invalid credentials" });
       }
-      
+
       //Comparison password provided during login and password stored using hash table
-      const passComparison = await bcryptjs.compare(pppp, user.password)
-      
+      const passComparison = await bcryptjs.compare(pppp, user.password);
+
       if (!passComparison) {
-        console.log("Invalid password")
-        return res.status(400).json({success : success,error:"Invalid credentials"} );
+        return res
+          .status(400)
+          .json({ success: success, error: "Invalid credentials" });
       }
       //Returning id as json because retrieval of data from id is faster
       const data = {
@@ -134,50 +132,44 @@ router.post(
           id: user.id,
         },
       };
-        const authToken = jwt.sign(data, jwwwtoken);
-        success=true;
-        res.json({success,authToken});
-
+      const authToken = jwt.sign(data, jwwwtoken);
+      success = true;
+      res.json({ success, authToken });
     } catch (error) {
       return res.status(500).json({
-          success: success,
-          error: "Some error occured from our side",
-          message: "We are trying to fix it",
-        });
-    }
-  }
-)
-
-//Third Route : To give user details on successful login using web token
-//Using fetchuser function as middleware to authenticate user 
-router.post("/getuserid", fetchuser, async (req, res) => {
-    
-  let userId = req.user.id;
-  let l = await User.findById(userId);
-  if(!l){
-    return res.status(401).send("Internal server error");
-  }
-    try {
-        let userId = req.user.id;
-        const user = await User.findById(userId).select("-password")
-        res.send(user)
-      } catch (error) {
-        console.log(error);
-        res.status(401).send("Internal server error");
+        success: success,
+        error: "Some error occured from our side",
+        message: "We are trying to fix it",
+      });
     }
   }
 );
 
+//Third Route : To give user details on successful login using web token
+//Using fetchuser function as middleware to authenticate user
+router.post("/getuserid", fetchuser, async (req, res) => {
+  let userId = req.user.id;
+  let l = await User.findById(userId);
+  if (!l) {
+    return res.status(401).send("Internal server error");
+  }
+  try {
+    let userId = req.user.id;
+    const user = await User.findById(userId).select("-password");
+    res.send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(401).send("Internal server error");
+  }
+});
+
 //My special route to get information of all users
-router.get("/getallusers",async(req,res)=>{
+router.get("/getallusers", async (req, res) => {
   let data = await User.find().select("-password");
-  try{
-    console.log(data);
+  try {
     res.json(data);
+  } catch (error) {
+    return res.status(300).json("ERROR");
   }
-  catch(error){
-    console.log("Cannot find users");
-    return res.status(300).json("ERROR")
-  }
-})
+});
 module.exports = router;

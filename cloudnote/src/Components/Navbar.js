@@ -1,20 +1,25 @@
-import React, { useEffect} from "react";
+import React, { useContext, useEffect} from "react";
 import { Link,useLocation, useNavigate} from "react-router-dom";
-function Navbar(props) {
+import NoteContext from "../context/Notes/NoteContext";
+import Alert from "./Alert"
+
+function Navbar() {
   const navigate = useNavigate();
   let location = useLocation();
   useEffect(()=>{
     // console.log(location.pathname)
   })
-  const allll=()=>{
-    props.showAlert("Hiii USEEFFECT",'success')
-  }
+  
+  const p = useContext(NoteContext);
+  const {alert,showAlert}=p;
+
   const handleLogout=()=>{
     localStorage.removeItem('token');
+    showAlert("Logged OUT","success");
     navigate("/");
   }
     return (
-    <>
+      <div className=''>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
         <Link to="" className="navbar-brand fw-bold">Cloud NoteBook</Link>
@@ -42,24 +47,23 @@ function Navbar(props) {
                   Disabled
                 </Link>
               </li>
-              <button className="btn btn-dark" onClick={allll}>CM</button>
             </ul>
           </div>
-          <form className="mx-4 d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-primary" type="submit">Search</button>
-      </form>
+          
           {!localStorage.getItem('token') ?
-           <div>
+           <div className="mx-4">
             <ul className="navbar-nav">
-            <li><Link to="login"className="mx-1 btn btn-outline-success">Login</Link></li>
-            <li><Link to="signup" className="mx-1 btn btn-outline-secondary">Signup</Link></li>
+            <li><Link to="login"className="mx-1 btn btn-outline-success ">Login</Link></li>
+            <li><Link to="signup" className="mx-1 btn btn-outline-secondary ">Signup</Link></li>
             </ul>
           </div>  : <button className="btn btn-primary" onClick={handleLogout}>LOGOUT</button>
            }
         </div>
       </nav>
-    </>
+      <div className="container">
+        <Alert alert={alert}/>
+      </div>
+    </div>
   );
 }
 

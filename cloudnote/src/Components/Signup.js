@@ -1,5 +1,6 @@
-import React, {useState } from 'react'
+import React, {useState,useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import NoteContext from '../context/Notes/NoteContext';
 
 const Signup = (props) => {
   
@@ -9,15 +10,9 @@ const Signup = (props) => {
   const Change=(e)=>{
     setCredentials({...credentials,[e.target.name]:[e.target.value]});
   }
-  const showAlert=(msg,type)=>{
-    setAlert({
-      message : msg,
-      type : type
-    })
-    setTimeout(()=>{
-      setAlert("")
-    },2000);
-  }
+  
+  const p = useContext(NoteContext);
+  const {showAlert} = p;
   
   const Submit=async (e)=>{
     e.preventDefault();
@@ -39,11 +34,10 @@ const Signup = (props) => {
           localStorage.setItem('token',res.authToken);
           showAlert("Signup success","success")
           navigate("/");
-          console.log("User Added")
         }
+        else showAlert("Signup Failed","warning")
       }
       catch(err){
-        showAlert("Signup Failed","warning")
         console.log(err)
       }
  

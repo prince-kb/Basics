@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import NoteContext from '../context/Notes/NoteContext';
 
 
 const Login = () => {
@@ -10,17 +11,8 @@ const Login = () => {
       setCredentials({...credentials,[e.target.name] : [e.target.value]})
     }
 
-    const showAlert=(msg,type)=>{
-
-      setAlert({
-        message : msg,
-        type : type
-      })
-      setTimeout(()=>{
-        setAlert("")
-      },2000);
-    }
-    
+    const p = useContext(NoteContext);
+    const {showAlert} = p;
     const onSubmit=async(e)=>{
         e.preventDefault()
         try{
@@ -38,14 +30,15 @@ const Login = () => {
               navigate("/");
               // fetchmyNotes();
             }
+            else showAlert("Login Failed",'warning')
           }
           catch(err){
-          showAlert("Login Failed",'warning')
             console.log(err)
           }
     }
   return (
-    <div>
+    <div className='container mt-5'>
+      <h2 className='h2 mx-3 my-3'>Enter your credentials</h2>
     <form className='container' onSubmit={onSubmit}>
         <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>

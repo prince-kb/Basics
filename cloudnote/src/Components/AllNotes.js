@@ -11,7 +11,7 @@ function Notes() {
   const [n,setN]=useState({title : "" ,notes : "", tag : ""})
   const [nn,setNn]=useState({id : "",etitle : "",enotes : "", etag : ""})
   const note = useContext(NoteContext);
-  const { notee,addNote,editNote,fetchmyNotes} = note;
+  const { notee,addNote,editNote,fetchmyNotes,showAlert} = note;
 
   const onChange=(e)=>{
     setN({...n,[e.target.name] : e.target.value})
@@ -20,16 +20,22 @@ function Notes() {
   const submit=(e)=>{
     e.preventDefault();
     setN({...n,[e.target.name] : e.target.value})
+    try{
     addNote(n.title,n.notes,n.tag);
     setN({title : "" ,notes : "", tag : ""});
+    }
+    catch(err){
+      showAlert("Cannot add note","warning")
+    }
+    showAlert("Note added","success")
   }
-
+  
   //When clicked on editnote icon on any noteitem 
   const updateNote=async(e)=>{
     ref.current.click()
     setNn({id : e._id,etitle:e.title,enotes:e.notes,etag:e.tag})
   }
-
+  
   //When any text of the modale changes
   const onChangeee=(e)=>{
     setNn({...nn,[e.target.name] : e.target.value})
@@ -39,11 +45,10 @@ function Notes() {
     e.preventDefault()
     try{
       editNote(nn.id,nn.etitle,nn.enotes,nn.etag);
-      console.log("Updating notes")
+      showAlert("Note edited","success")
     }
     catch(e){
-      console.log("Cannot update note due to : ")
-      console.log(e)
+      showAlert("Cannot update note","warning")
     }
     //To close the modale when trying to save the editnote
     refClose.current.click()

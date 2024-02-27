@@ -8,6 +8,17 @@ const NoteState = (props)=>{
     //   fetchmyNotes();
     // }, [])
 
+    const [alert, setAlert] = useState();
+
+    const showAlert=(msg,type)=>{
+      setAlert({
+        message : msg,
+        type : type
+      })
+        setTimeout(()=>{
+          setAlert("")
+        },2000);
+      }
 
     const allNotes = [
         {
@@ -54,7 +65,6 @@ const NoteState = (props)=>{
           });
           const res = await response.json();
           setNotes(notee.concat(res));
-          console.log("Note Added")
         }
         catch(err){
           console.log(err)
@@ -62,6 +72,7 @@ const NoteState = (props)=>{
       }
 
       const deleteNote=async(id)=>{
+        try{
         const response = await fetch(`${host}/notes/deletenote/${id}`, {
           method: "DELETE",
           headers: {
@@ -72,6 +83,10 @@ const NoteState = (props)=>{
         const res = await response.json();
         console.log("Note deleted",res)
         setNotes(notee.filter((allNotes)=>{return allNotes._id!==id}))
+      }
+      catch(err){
+        console.log("Cannot delete note");
+      }
       }
 
       const editNote=async(id,title,notes,tag)=>{
@@ -89,7 +104,7 @@ const NoteState = (props)=>{
           setNotes(newNotes)
         }
 
-        const response = await fetch(`${host}/notes/updatenote/${id}`, {
+        await fetch(`${host}/notes/updatenote/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +112,7 @@ const NoteState = (props)=>{
           },
           body : JSON.stringify({title,notes,tag})
         });
-        console.log("Note updated" , response)
+        fetchmyNotes();
       }
         catch(err){
           console.log("Error")
@@ -106,7 +121,7 @@ const NoteState = (props)=>{
 
     return(
         /* Sending first and update as props to the NoteContext.Provider function so that it will also be passed to all the childrens */
-        <NoteContext.Provider value={{notee,setNotes,addNote,deleteNote,editNote,fetchmyNotes}}>
+        <NoteContext.Provider value={{notee,setNotes,addNote,deleteNote,editNote,fetchmyNotes,alert,setAlert,showAlert}}>
         {props.children}
         </NoteContext.Provider>
      )}

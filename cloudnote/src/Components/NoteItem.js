@@ -3,7 +3,7 @@ import NoteContext from "../context/Notes/NoteContext";
 
 function NoteItem(props) {
   const n = useContext(NoteContext);
-  const {deleteNote} = n;
+  const {deleteNote,showAlert} = n;
   const { note,updateNote } = props;
   const changeDate = (x) => {
     return new Date(x).toGMTString();
@@ -19,7 +19,7 @@ function NoteItem(props) {
             {changeDate(note.date)}
           </h6>
           <p className="card-text">{note.notes}</p>
-          <i className="fa-solid fa-trash mx-2" onClick={()=>{deleteNote(note._id)}} ></i>
+          <i className="fa-solid fa-trash mx-2" onClick={()=>{deleteNote(note._id); showAlert("Note deleted","success")}} ></i>
           <i className="fa-regular fa-pen-to-square mx-2" onClick={()=>{updateNote(note)}}></i>
         </div>
       </div> : <h2 className="h2">No notes available</h2> }
