@@ -11,6 +11,8 @@ import l6 from "./pics/6.png"
 export default function Table(props) {
 
   const selected = (p)=>{
+    console.log(p)
+    console.log(p.target)
     return p.target;    
   }
 
@@ -19,14 +21,14 @@ export default function Table(props) {
     <div>
       <table id="dices" className="" style ={{backgroundColor: "yellow"}}>
   <tr>
-    <td><img src={l1} alt = "None" height="80px" className="mx-2 my-2 bg-light"  id="ll1" onClick={selected}/></td>
-    <td><img src={l2} alt = "None" height="80px" className="mx-2 my-2 bg-light"  id="ll2" onClick={selected}/></td>
-    <td><img src={l3} alt = "None" height="80px" className="mx-2 my-2 bg-light"  id="ll3" onClick={selected}/></td>
+    <td><img src={l1} alt = "None" height="80px" className="mx-2 my-2 bg-light" onClick={selected}/></td>
+    <td><img src={l2} alt = "None" height="80px" className="mx-2 my-2 bg-light" onClick={selected}/></td>
+    <td><img src={l3} alt = "None" height="80px" className="mx-2 my-2 bg-light" onClick={selected}/></td>
   </tr>
   <tr>
-    <td><img src={l4} alt = "None" height="80px" className="mx-2 my-2 bg-light"  id="ll4" onClick={selected}/></td>
-    <td><img src={l5} alt = "None" height="80px" className="mx-2 my-2 bg-light"  id="ll5" onClick={selected}/></td>
-    <td><img src={l6} alt = "None" height="80px" className="mx-2 my-2 bg-light"  id="ll6" onClick={selected}/></td>
+    <td><img src={l4} alt = "None" height="80px" className="mx-2 my-2 bg-light" onClick={selected}/></td>
+    <td><img src={l5} alt = "None" height="80px" className="mx-2 my-2 bg-light" onClick={selected}/></td>
+    <td><img src={l6} alt = "None" height="80px" className="mx-2 my-2 bg-light" onClick={selected}/></td>
   </tr>
 </table>
     </div>
